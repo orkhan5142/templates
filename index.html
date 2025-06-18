@@ -1,0 +1,1420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template Galaxy - Modern Web Templates</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+        /* CSS Variables */
+        :root {
+            --primary: #01D26D;
+            --secondary: #01A758;
+            --accent: #01D26D;
+            --light: #121212;
+            --dark: #ffffff;
+            --success: #01D26D;
+            --danger: #ff4757;
+            --warning: #ffa502;
+            --info: #2ed573;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            --transition: all 0.3s ease;
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: black;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: black;
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+            border-bottom: 1px solid #333;
+        }
+
+        header.scrolled {
+            background-color: rgba(0, 0, 0, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 0.5rem;
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            color: white;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background: black;
+            margin-top: 80px;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-image {
+            flex: 1;
+            position: relative;
+        }
+
+        .hero-image img {
+            border-radius: 10px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            transform: perspective(1000px) rotateY(-10deg);
+            transition: var(--transition);
+            border: 1px solid #333;
+        }
+
+        .hero-image:hover img {
+            transform: perspective(1000px) rotateY(0deg);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            color: white;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #ccc;
+            max-width: 600px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: black;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(1, 210, 109, 0.5);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            margin-left: 1rem;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: black;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(1, 210, 109, 0.5);
+        }
+
+        /* Category Badges */
+        .category-badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .badge-agency {
+            background-color: rgba(1, 210, 109, 0.2);
+            color: var(--primary);
+        }
+
+        .badge-portfolio {
+            background-color: rgba(255, 165, 2, 0.2);
+            color: var(--warning);
+        }
+
+        .badge-ecommerce {
+            background-color: rgba(255, 71, 87, 0.2);
+            color: var(--danger);
+        }
+
+        .badge-ChatBot {
+            background-color: rgba(1, 210, 109, 0.2);
+            color: var(--success);
+        }
+
+        .badge-corporate {
+            background-color: rgba(46, 213, 115, 0.2);
+            color: var(--info);
+        }
+
+        .badge-restaurant {
+            background-color: rgba(120, 111, 166, 0.2);
+            color: #786fa6;
+        }
+
+        /* Category Filters */
+        .category-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .filter-btn {
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            background-color: #121212;
+            border: 1px solid #333;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+            color: white;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--primary);
+            color: black;
+            border-color: var(--primary);
+        }
+
+        /* Templates Section */
+        .section {
+            padding: 5rem 0;
+            background-color: black;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+            color: white;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: #ccc;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .templates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .template-card {
+            background-color: #121212;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            border: 1px solid #333;
+        }
+
+        .template-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .template-img {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .template-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .template-card:hover .template-img img {
+            transform: scale(1.05);
+        }
+
+        .template-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: var(--danger);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .template-info {
+            padding: 1.5rem;
+        }
+
+        .template-info h3 {
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+
+        .template-categories {
+            margin-bottom: 0.8rem;
+        }
+
+        .template-info p {
+            color: #ccc;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .template-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+
+        .template-price {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .template-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .template-actions .btn {
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
+        }
+
+        /* Features Section */
+        .features {
+            background-color: #121212;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background-color: #121212;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid #333;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .feature-card p {
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+
+        /* Testimonials */
+        .testimonials-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .testimonial {
+            background-color: #121212;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            margin: 0 1rem;
+            display: none;
+            border: 1px solid #333;
+        }
+
+        .testimonial.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .testimonial-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1rem;
+            border: 3px solid var(--primary);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: #ccc;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .testimonial-text::before,
+        .testimonial-text::after {
+            content: '"';
+            font-size: 2rem;
+            color: var(--primary);
+            opacity: 0.3;
+            position: absolute;
+        }
+
+        .testimonial-text::before {
+            top: -20px;
+            left: -10px;
+        }
+
+        .testimonial-text::after {
+            bottom: -30px;
+            right: -10px;
+        }
+
+        .testimonial-author {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+
+        .testimonial-role {
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        .slider-controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+            gap: 1rem;
+        }
+
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #333;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .slider-dot.active {
+            background-color: var(--primary);
+            transform: scale(1.2);
+        }
+
+        /* CTA Section */
+        .cta {
+            border-color: black;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: rgb(255, 255, 255);
+            text-align: center;
+            padding: 4rem 0;
+            border-radius: 10px;
+            margin: 3rem 0;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+
+        .cta .btn {
+            background-color: rgb(255, 255, 255);
+            color: var(--primary);
+            font-size: 1.1rem;
+            padding: 1rem 2.5rem;
+        }
+
+        .cta .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Footer */
+        footer {
+            background-color: black;
+            color: white;
+            padding: 4rem 0 2rem;
+            border-top: 1px solid #333;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-col h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+            color: white;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-col ul li a {
+            opacity: 0.8;
+            transition: var(--transition);
+            color: #ccc;
+        }
+
+        .footer-col ul li a:hover {
+            opacity: 1;
+            color: var(--primary);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+            color: white;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary);
+            color: black;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            font-size: 0.9rem;
+            opacity: 0.7;
+            color: #ccc;
+        }
+
+
+        /* Mobile Styles */
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-text {
+                margin-bottom: 3rem;
+            }
+
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero-buttons {
+                display: flex;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: black;
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem 0;
+                gap: 1.5rem;
+                transition: var(--transition);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section {
+                padding: 3rem 0;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .btn {
+                padding: 0.7rem 1.5rem;
+            }
+
+            .cta h2 {
+                font-size: 2rem;
+            }
+
+            .category-filters {
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding-bottom: 1rem;
+                flex-wrap: nowrap;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .filter-btn {
+                white-space: nowrap;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .btn-outline {
+                margin-left: 0;
+            }
+
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+
+            .cta h2 {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+
+        .delay-3 {
+            animation-delay: 0.6s;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">
+                    <i class="fas fa-cubes"></i>
+                    <span>GCraftTemplates</span>
+                </a>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#templates">Templates</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <button class="mobile-menu-btn" id="menuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Beautiful, Responsive Website Templates</h1>
+                    <p>Discover our collection of professionally designed templates that will make your website stand out. Fully customizable and mobile-friendly.</p>
+                    <div class="hero-buttons">
+                        <a href="#templates" class="btn btn-primary">Browse Templates</a>
+                        <a href="#" class="btn btn-outline">Learn More</a>
+                    </div>
+                </div>
+                <div class="hero-image floating">
+                    <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Website Template">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Templates Section -->
+    <section class="section" id="templates">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Premium Templates</h2>
+                <p>Choose from our collection of modern, responsive templates designed for various industries and purposes.</p>
+            </div>
+
+            <!-- Category Filters -->
+            <div class="category-filters">
+                <button class="filter-btn active" data-category="all">All Templates</button>
+                <button class="filter-btn" data-category="agency">Agency</button>
+                <button class="filter-btn" data-category="portfolio">Portfolio</button>
+                <button class="filter-btn" data-category="ChatBot">ChatBot</button>
+                
+            </div>
+
+            <div class="templates-grid">
+    <!-- Template 1 - Agency -->
+    <div class="template-card" data-categories="agency corporate">
+        <div class="template-img">
+            <img src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Business Template">
+            <span class="template-badge">Popular</span>
+        </div>
+        <div class="template-info">
+            <h3>Nova Tech</h3>
+            <div class="template-categories">
+                <span class="category-badge badge-agency">Agency</span>
+                <span class="category-badge badge-corporate">Corporate</span>
+            </div>
+            <p>Perfect for businesses and corporate websites with clean, professional design.</p>
+            <div class="template-meta">
+                
+                <div class="template-actions">
+                    <a href="agency/Dev/agencyDev-main/index.html" class="btn btn-primary">Preview</a>
+                    <a href="https://gcraft.tech/discuss-project" class="btn btn-outline">Contact</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Template 2 - Agency -->
+    <div class="template-card" data-categories="agency corporate">
+        <div class="template-img">
+            <img src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Business Template">
+            <span class="template-badge">Popular</span>
+        </div>
+        <div class="template-info">
+            <h3>Blockchain</h3>
+            <div class="template-categories">
+                <span class="category-badge badge-agency">Agency</span>
+                <span class="category-badge badge-corporate">Corporate</span>
+            </div>
+            <p>Perfect for businesses and corporate websites with clean, professional design.</p>
+            <div class="template-meta">
+                
+                <div class="template-actions">
+                    <a href="agency/Dev/agencydev2/index.html" class="btn btn-primary">Preview</a>
+                    <a href="https://gcraft.tech/discuss-project" class="btn btn-outline">Contact</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Template 3 - Agency -->
+    <div class="template-card" data-categories="agency corporate">
+        <div class="template-img">
+            <img src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Business Template">
+            <span class="template-badge">Popular</span>
+        </div>
+        <div class="template-info">
+            <h3>Innovative Technology Solutions</h3>
+            <div class="template-categories">
+                <span class="category-badge badge-agency">Agency</span>
+                <span class="category-badge badge-corporate">Corporate</span>
+            </div>
+            <p>Perfect for businesses and corporate websites with clean, professional design.</p>
+            <div class="template-meta">
+                
+                <div class="template-actions">
+                    <a href="agency/Dev/agencydev3/index.html" class="btn btn-primary">Preview</a>
+                    <a href="https://gcraft.tech/discuss-project" class="btn btn-outline">Contact</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Template 4 - Agency -->
+    <div class="template-card" data-categories="agency corporate">
+        <div class="template-img">
+            <img src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Business Template">
+            <span class="template-badge">Popular</span>
+        </div>
+        <div class="template-info">
+            <h3>ELYSIUM</h3>
+            <div class="template-categories">
+                <span class="category-badge badge-agency">Agency</span>
+                <span class="category-badge badge-corporate">Corporate</span>
+            </div>
+            <p>Perfect for businesses and corporate websites with clean, professional design.</p>
+            <div class="template-meta">
+                
+                <div class="template-actions">
+                    <a href="agency/marketing/agency-marketing2/index.html" class="btn btn-primary">Preview</a>
+                    <a href="https://gcraft.tech/discuss-project" class="btn btn-outline">Contact</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Template 5 - Agency -->
+    <div class="template-card" data-categories="agency corporate">
+        <div class="template-img">
+            <img src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Business Template">
+            <span class="template-badge">Popular</span>
+        </div>
+        <div class="template-info">
+            <h3>Nexus Marketing</h3>
+            <div class="template-categories">
+                <span class="category-badge badge-agency">Agency</span>
+                <span class="category-badge badge-corporate">Corporate</span>
+            </div>
+            <p>Perfect for businesses and corporate websites with clean, professional design.</p>
+            <div class="template-meta">
+                
+                <div class="template-actions">
+                    <a href="agency/marketing/agency-marketing3/index.html" class="btn btn-primary">Preview</a>
+                    <a href="https://gcraft.tech/discuss-project" class="btn btn-outline">Contact</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <!-- Template 6 - Portfolio -->
+    <div class="template-card" data-categories="portfolio">
+        <div class="template-img">
+            <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Portfolio Template">
+        </div>
+        <div class="template-info">
+            <h3>Alex Taylor</h3>
+            <div class="template-categories">
+                <span class="category-badge badge-portfolio">Portfolio</span>
+            </div>
+            <p>Showcase your work with this elegant portfolio template for creatives.</p>
+            <div class="template-meta">
+                
+                <div class="template-actions">
+                    <a href="portfolio/index1.html" class="btn btn-primary">Preview</a>
+                    <a href="https://gcraft.tech/discuss-project" class="btn btn-outline">Contact</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Template 7 - Portfolio -->
+    <div class="template-card" data-categories="portfolio">
+        <div class="template-img">
+            <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Portfolio Template">
+        </div>
+        <div class="template-info">
+            <h3>Liam Sterling</h3>
+            <div class="template-categories">
+                <span class="category-badge badge-portfolio">Portfolio</span>
+            </div>
+            <p>Showcase your work with this elegant portfolio template for creatives.</p>
+            <div class="template-meta">
+                
+                <div class="template-actions">
+                    <a href="portfolio/index2.html" class="btn btn-primary">Preview</a>
+                    <a href="https://gcraft.tech/discuss-project" class="btn btn-outline">Contact</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Template 8 - ChatBot -->
+    <div class="template-card" data-categories="ChatBot">
+        <div class="template-img">
+            <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1172&q=80" alt="ChatBot Template">
+            <span class="template-badge">New</span>
+        </div>
+        <div class="template-info">
+            <h3>ChatBot1</h3>
+            <div class="template-categories">
+                <span class="category-badge badge-ChatBot">ChatBot</span>
+            </div>
+            <p>Modern ChatBot template with excellent typography and reading experience.</p>
+            <div class="template-meta">
+                
+                <div class="template-actions">
+                    <a href="chatbot/index1.html" class="btn btn-primary">Preview</a>
+                    <a href="https://gcraft.tech/discuss-project" class="btn btn-outline">Contact</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <!-- Template 9 - ChatBot -->
+    <div class="template-card" data-categories="ChatBot">
+        <div class="template-img">
+            <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1172&q=80" alt="ChatBot Template">
+            <span class="template-badge">New</span>
+        </div>
+        <div class="template-info">
+            <h3>ChatBot2</h3>
+            <div class="template-categories">
+                <span class="category-badge badge-ChatBot">ChatBot</span>
+            </div>
+            <p>Modern ChatBot template with excellent typography and reading experience.</p>
+            <div class="template-meta">
+                
+                <div class="template-actions">
+                    <a href="chatbot/index2.html" class="btn btn-primary">Preview</a>
+                    <a href="https://gcraft.tech/discuss-project" class="btn btn-outline">Contact</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <!-- Template 10 - ChatBot -->
+    <div class="template-card" data-categories="ChatBot">
+        <div class="template-img">
+            <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1172&q=80" alt="ChatBot Template">
+            <span class="template-badge">New</span>
+        </div>
+        <div class="template-info">
+            <h3>ChatBot3</h3>
+            <div class="template-categories">
+                <span class="category-badge badge-ChatBot">ChatBot</span>
+            </div>
+            <p>Modern ChatBot template with excellent typography and reading experience.</p>
+            <div class="template-meta">
+                
+                <div class="template-actions">
+                    <a href="chatbot/index3.html" class="btn btn-primary">Preview</a>
+                    <a href="https://gcraft.tech/discuss-project" class="btn btn-outline">Contact</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+                
+               
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose Our Templates</h2>
+                <p>Our templates come with all the modern features you need to launch your website quickly.</p>
+            </div>
+            <div class="features-grid">
+                <!-- Feature 1 -->
+                <div class="feature-card delay-1 floating">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Fully Responsive</h3>
+                    <p>Looks perfect on all devices from desktop to mobile with adaptive layouts.</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="feature-card delay-2 floating">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Fast Loading</h3>
+                    <p>Optimized code and assets for lightning fast page load times.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="feature-card delay-3 floating">
+                    <div class="feature-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3>Easy Customization</h3>
+                    <p>Change colors, fonts and layouts with simple CSS variables.</p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="feature-card delay-1 floating">
+                    <div class="feature-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Clean Code</h3>
+                    <p>Well-structured, commented code that's easy to modify and extend.</p>
+                </div>
+
+                <!-- Feature 5 -->
+                <div class="feature-card delay-2 floating">
+                    <div class="feature-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>SEO Ready</h3>
+                    <p>Built with SEO best practices to help your site rank higher.</p>
+                </div>
+
+                <!-- Feature 6 -->
+                <div class="feature-card delay-3 floating">
+                    <div class="feature-icon">
+                        <i class="fas fa-life-ring"></i>
+                    </div>
+                    <h3>Premium Support</h3>
+                    <p>Dedicated support team to help with any questions or issues.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Our Customers Say</h2>
+                <p>Don't just take our word for it - hear from some of our happy customers.</p>
+            </div>
+            <div class="testimonials-slider">
+                <!-- Testimonial 1 -->
+                <div class="testimonial active">
+                    <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Sarah Johnson" class="testimonial-avatar">
+                    <p class="testimonial-text">The portfolio template was exactly what I needed to showcase my photography work. The customization options made it easy to match my brand perfectly.</p>
+                    <h4 class="testimonial-author">Sarah Johnson</h4>
+                    <p class="testimonial-role">Professional Photographer</p>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="testimonial">
+                    <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Michael Chen" class="testimonial-avatar">
+                    <p class="testimonial-text">Our new corporate website built with GCraftTempalates has received so many compliments. The support team was incredibly helpful during the setup process.</p>
+                    <h4 class="testimonial-author">Michael Chen</h4>
+                    <p class="testimonial-role">Marketing Director</p>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="testimonial">
+                    <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Emily Rodriguez" class="testimonial-avatar">
+                    <p class="testimonial-text">As a small business owner, I needed an affordable but professional solution. The restaurant template saved me thousands in design costs and looks amazing.</p>
+                    <h4 class="testimonial-author">Emily Rodriguez</h4>
+                    <p class="testimonial-role">Restaurant Owner</p>
+                </div>
+
+                <div class="slider-controls">
+                    <div class="slider-dot active" data-slide="0"></div>
+                    <div class="slider-dot" data-slide="1"></div>
+                    <div class="slider-dot" data-slide="2"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section">
+        <div class="container">
+            <div class="cta">
+                <h2>Ready to Launch Your Website?</h2>
+                <p>Join thousands of satisfied customers who have built beautiful websites with our templates.</p>
+                <a href="#" class="btn">Get Started Today</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <!-- Footer Column 1 -->
+                <div class="footer-col">
+                    <h3>GCraftTempalates</h3>
+                    <p>Providing high-quality website templates since 2015. Our mission is to make web design accessible to everyone.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <!-- Footer Column 2 -->
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#templates">Templates</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+
+                <!-- Footer Column 3 -->
+                <div class="footer-col">
+                    <h3>Categories</h3>
+                    <ul>
+                        <li><a href="#" data-category="agency">Agency Templates</a></li>
+                        <li><a href="#" data-category="portfolio">Portfolio Templates</a></li>
+                        <li><a href="#" data-category="ecommerce">E-commerce Templates</a></li>
+                        <li><a href="#" data-category="blog">Blog Templates</a></li>
+                        <li><a href="#" data-category="restaurant">Restaurant Templates</a></li>
+                    </ul>
+                </div>
+
+                <!-- Footer Column 4 -->
+                <div class="footer-col">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Design Street, Creative City</li>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-envelope"></i> hello@GCraftTempalates.com</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 GCraft. All Rights Reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle
+            const menuBtn = document.getElementById('menuBtn');
+            const navLinks = document.getElementById('navLinks');
+
+            menuBtn.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+                menuBtn.innerHTML = navLinks.classList.contains('active') ? 
+                    '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+            });
+
+            // Close mobile menu when clicking a link
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', function() {
+                    navLinks.classList.remove('active');
+                    menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                });
+            });
+
+            // Header scroll effect
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Testimonial slider
+            const testimonials = document.querySelectorAll('.testimonial');
+            const dots = document.querySelectorAll('.slider-dot');
+            let currentSlide = 0;
+
+            function showSlide(index) {
+                testimonials.forEach(testimonial => testimonial.classList.remove('active'));
+                dots.forEach(dot => dot.classList.remove('active'));
+                
+                testimonials[index].classList.add('active');
+                dots[index].classList.add('active');
+                currentSlide = index;
+            }
+
+            dots.forEach(dot => {
+                dot.addEventListener('click', function() {
+                    const slideIndex = parseInt(this.getAttribute('data-slide'));
+                    showSlide(slideIndex);
+                });
+            });
+
+            // Auto slide change
+            setInterval(() => {
+                let nextSlide = (currentSlide + 1) % testimonials.length;
+                showSlide(nextSlide);
+            }, 5000);
+
+            // Template category filtering
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const templateCards = document.querySelectorAll('.template-card');
+            const categoryLinks = document.querySelectorAll('.footer-col ul li a[data-category]');
+
+            function filterTemplates(category) {
+                templateCards.forEach(card => {
+                    if (category === 'all' || card.getAttribute('data-categories').includes(category)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+
+                // Update active button
+                filterButtons.forEach(btn => {
+                    if (btn.getAttribute('data-category') === category) {
+                        btn.classList.add('active');
+                    } else {
+                        btn.classList.remove('active');
+                    }
+                });
+            }
+
+            // Filter button click event
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const category = this.getAttribute('data-category');
+                    filterTemplates(category);
+                });
+            });
+
+            // Category links in footer
+            categoryLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const category = this.getAttribute('data-category');
+                    filterTemplates(category);
+                    
+                    // Scroll to templates section
+                    const templatesSection = document.getElementById('templates');
+                    window.scrollTo({
+                        top: templatesSection.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Animation on scroll
+            const animateOnScroll = function() {
+                const elements = document.querySelectorAll('.feature-card, .template-card, .section-title');
+                
+                elements.forEach(element => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight / 1.2;
+                    
+                    if (elementPosition < screenPosition) {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }
+                });
+            };
+
+            // Set initial state for animated elements
+            document.querySelectorAll('.feature-card, .template-card, .section-title').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            });
+
+            window.addEventListener('scroll', animateOnScroll);
+            animateOnScroll(); // Run once on load
+        });
+    </script>
+</body>
+</html>

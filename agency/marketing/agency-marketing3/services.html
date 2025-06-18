@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services | Nexus Marketing</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .page-hero {
+        position: relative;
+        background: url('https://images.unsplash.com/photo-1533750516457-a7f992034fec?q=80&w=2106&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
+        transition: background 0.3s ease-in-out;
+        }
+
+        .page-hero::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+        box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.6);
+        z-index: 1;
+        }
+
+        .page-hero .container,
+        .page-hero-content {
+        position: relative;
+        z-index: 2;
+        }
+
+
+        .page-hero:hover {
+            background: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1400&q=80') no-repeat center center/cover;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">Nexus<span>Marketing</span></a>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+                    <li class="nav-item"><a href="index.html#portfolio" class="nav-link">Portfolio</a></li>
+                    <li class="nav-item"><a href="blog.html" class="nav-link active">Blog</a></li>
+                    <li class="nav-item"><a href="index.html#contact" class="nav-link">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Services Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <h1>Our Services</h1>
+            <p>Comprehensive marketing solutions tailored to your business needs</p>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-detail">
+        <div class="container">
+            <div class="service" id="digital-strategy">
+                <div class="service-content">
+                    <h2>Digital Strategy</h2>
+                    <p>In today's complex digital landscape, a cohesive strategy is essential for success. Our digital strategy service provides a comprehensive roadmap tailored to your business objectives, audience, and market position.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Comprehensive market and competitive analysis</li>
+                        <li><i class="fas fa-check"></i> Customer journey mapping and persona development</li>
+                        <li><i class="fas fa-check"></i> Omnichannel strategy development</li>
+                        <li><i class="fas fa-check"></i> Technology stack recommendations</li>
+                        <li><i class="fas fa-check"></i> Performance measurement framework</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary">Get Started</a>
+                </div>
+                <div class="service-image">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Digital Strategy">
+                </div>
+            </div>
+
+            <div class="service" id="performance-marketing">
+                <div class="service-image">
+                    <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Performance Marketing">
+                </div>
+                <div class="service-content">
+                    <h2>Performance Marketing</h2>
+                    <p>Our performance marketing services focus on delivering measurable results through data-driven campaigns across all digital channels. We optimize every touchpoint to maximize ROI and drive sustainable growth.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Paid media strategy and execution (Google, Meta, LinkedIn)</li>
+                        <li><i class="fas fa-check"></i> Conversion rate optimization</li>
+                        <li><i class="fas fa-check"></i> Programmatic advertising</li>
+                        <li><i class="fas fa-check"></i> Retargeting and lookalike audience strategies</li>
+                        <li><i class="fas fa-check"></i> Advanced attribution modeling</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary">Get Started</a>
+                </div>
+            </div>
+
+            <div class="service" id="seo-content">
+                <div class="service-content">
+                    <h2>SEO & Content Marketing</h2>
+                    <p>Drive qualified organic traffic with our comprehensive SEO and content marketing services. We combine technical expertise with compelling content to improve visibility and establish your brand as an industry authority.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Comprehensive SEO audits and technical optimization</li>
+                        <li><i class="fas fa-check"></i> Keyword research and content strategy</li>
+                        <li><i class="fas fa-check"></i> On-page and off-page optimization</li>
+                        <li><i class="fas fa-check"></i> Content creation and distribution</li>
+                        <li><i class="fas fa-check"></i> Link building and digital PR</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary">Get Started</a>
+                </div>
+                <div class="service-image">
+                    <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="SEO & Content">
+                </div>
+            </div>
+
+            <div class="service" id="brand-identity">
+                <div class="service-image">
+                    <img src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Brand Identity">
+                </div>
+                <div class="service-content">
+                    <h2>Brand Identity & Design</h2>
+                    <p>A strong brand identity is the foundation of all effective marketing. We help businesses develop distinctive brand identities that resonate with their target audience and differentiate them from competitors.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Brand strategy and positioning</li>
+                        <li><i class="fas fa-check"></i> Visual identity development (logo, color, typography)</li>
+                        <li><i class="fas fa-check"></i> Brand voice and messaging framework</li>
+                        <li><i class="fas fa-check"></i> Brand guidelines and standards</li>
+                        <li><i class="fas fa-check"></i> Brand asset creation</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary">Get Started</a>
+                </div>
+            </div>
+
+            <div class="service" id="social-media">
+                <div class="service-content">
+                    <h2>Social Media Marketing</h2>
+                    <p>Build meaningful connections with your audience through strategic social media marketing. We develop platform-specific strategies that engage your target audience and amplify your brand message.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Social media strategy development</li>
+                        <li><i class="fas fa-check"></i> Content planning and calendar management</li>
+                        <li><i class="fas fa-check"></i> Community management and engagement</li>
+                        <li><i class="fas fa-check"></i> Paid social media advertising</li>
+                        <li><i class="fas fa-check"></i> Influencer partnership programs</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary">Get Started</a>
+                </div>
+                <div class="service-image">
+                    <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Social Media Marketing">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process">
+        <div class="container">
+            <h2>Our Process</h2>
+            <p class="subtitle">A structured approach to delivering exceptional results</p>
+            
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Discovery</h3>
+                    <p>We begin by thoroughly understanding your business, goals, challenges, and target audience.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Strategy</h3>
+                    <p>Our team develops a customized strategy tailored to your specific needs and objectives.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Execution</h3>
+                    <p>We implement the strategy with precision, creativity, and attention to detail.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Optimization</h3>
+                    <p>Continuous monitoring and refinement ensure maximum performance and ROI.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Transform Your Marketing?</h2>
+                <p>Schedule a free consultation with our team to discuss how we can help you achieve your business goals.</p>
+                <a href="#contact" class="btn btn-primary">Get Started Today</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Nexus Marketing</h3>
+                    <p>Strategic marketing solutions that drive growth and deliver measurable results for ambitious businesses.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="index.html#portfolio">Portfolio</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="services.html#digital-strategy">Digital Strategy</a></li>
+                        <li><a href="services.html#performance-marketing">Performance Marketing</a></li>
+                        <li><a href="services.html#seo-content">SEO & Content</a></li>
+                        <li><a href="services.html#brand-identity">Brand Identity</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to our newsletter for marketing insights and tips.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your Email" required>
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 GCraft. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

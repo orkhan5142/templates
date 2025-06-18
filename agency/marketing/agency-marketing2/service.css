@@ -1,0 +1,362 @@
+/* Import Google Fonts */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+/* Global Styles */
+
+/* Service Header Section */
+.service-header {
+    height: 60vh;
+    min-height: 500px;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    position: relative;
+
+}
+
+.service-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0,0,0,0.6), rgba(26,26,26,0.7));
+    z-index: 1;
+}
+
+.service-header .container {
+    position: relative;
+    z-index: 2;
+}
+
+.service-header h1 {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    color: white;
+}
+
+.service-header p {
+    font-size: 1.3rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+/* Service Content Section */
+.service-content {
+    padding: 100px 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Service Overview */
+.service-overview {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+    margin-bottom: 80px;
+    padding: 40px 0;
+    border-bottom: 2px solid var(--secondary);
+}
+
+.service-icon-lg {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(135deg, var(--accent), #f4d03f);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    font-size: 3rem;
+    flex-shrink: 0;
+    box-shadow: 0 15px 40px rgba(212, 175, 55, 0.3);
+}
+
+.service-overview div:last-child {
+    flex: 1;
+}
+
+.service-overview h2 {
+    font-size: 2.5rem;
+    margin-bottom: 25px;
+    color: var(--primary);
+    line-height: 1.3;
+}
+
+.service-overview p {
+    font-size: 1.1rem;
+    color: var(--light-text);
+    line-height: 1.8;
+}
+
+/* Service Details Grid */
+.service-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 80px;
+}
+
+.detail-card {
+    background: var(--secondary);
+    padding: 40px 30px;
+    border-radius: 8px;
+    text-align: center;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.detail-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(135deg, var(--accent), #f4d03f);
+}
+
+.detail-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.detail-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    color: var(--primary);
+}
+
+.detail-card p {
+    color: var(--light-text);
+    line-height: 1.6;
+}
+
+/* Case Study Section */
+.case-study {
+    background: var(--secondary);
+    padding: 60px 40px;
+    border-radius: 10px;
+    margin-bottom: 60px;
+}
+
+.case-study h2 {
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 40px;
+    color: var(--primary);
+    position: relative;
+}
+
+.case-study h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: var(--accent);
+}
+
+.case-content {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.case-content img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    flex-shrink: 0;
+}
+
+.case-content div {
+    flex: 1;
+}
+
+.case-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: var(--primary);
+}
+
+.case-content p {
+    color: var(--light-text);
+    margin-bottom: 25px;
+    line-height: 1.7;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+    .service-overview {
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+    }
+
+    .service-icon-lg {
+        width: 100px;
+        height: 100px;
+        font-size: 2.5rem;
+        margin: 0 auto;
+    }
+
+    .service-overview h2 {
+        font-size: 2rem;
+    }
+
+    .case-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .case-content img {
+        width: 100%;
+        max-width: 400px;
+        height: 250px;
+    }
+}
+
+@media (max-width: 768px) {
+    .service-header h1 {
+        font-size: 3rem;
+    }
+
+    .service-header p {
+        font-size: 1.1rem;
+    }
+
+    .service-content {
+        padding: 60px 20px;
+    }
+
+    .service-overview h2 {
+        font-size: 1.8rem;
+    }
+
+    .service-details {
+        grid-template-columns: 1fr;
+    }
+
+    .case-study {
+        padding: 40px 20px;
+    }
+
+    nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 300px;
+        height: 100vh;
+        background-color: white;
+        box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+        transition: var(--transition);
+        z-index: 1001;
+        padding: 80px 30px;
+    }
+
+    nav.active {
+        right: 0;
+    }
+
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav ul li {
+        margin: 15px 0;
+    }
+
+    .mobile-menu-btn {
+        display: block;
+        font-size: 24px;
+        cursor: pointer;
+        color: var(--primary);
+    }
+}
+
+@media (max-width: 576px) {
+    .service-header h1 {
+        font-size: 2.5rem;
+    }
+
+    .service-header p {
+        font-size: 1rem;
+    }
+
+    .service-overview h2 {
+        font-size: 1.6rem;
+    }
+
+    .case-study h2 {
+        font-size: 1.8rem;
+    }
+
+    .service-icon-lg {
+        width: 80px;
+        height: 80px;
+        font-size: 2rem;
+    }
+}
+
+/* Additional utility classes */
+.text-accent {
+    color: var(--accent);
+}
+
+.section-title {
+    font-size: 3rem;
+    margin-bottom: 30px;
+    position: relative;
+    display: inline-block;
+}
+
+.section-title:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 50%;
+    height: 3px;
+    background: var(--accent);
+}
+
+/* Animation for smooth entrance */
+.service-content > * {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: slideUp 0.8s ease forwards;
+}
+
+.service-overview {
+    animation-delay: 0.2s;
+}
+
+.service-details {
+    animation-delay: 0.4s;
+}
+
+.case-study {
+    animation-delay: 0.6s;
+}
+
+@keyframes slideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
