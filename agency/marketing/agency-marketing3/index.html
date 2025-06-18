@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Marketing | Award-Winning Digital Agency</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .hero {
+        position: relative;
+        background: url('https://images.unsplash.com/photo-1533750516457-a7f992034fec?q=80&w=2106&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
+        transition: background 0.3s ease-in-out;
+        }
+
+        .hero::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+        box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.6);
+        z-index: 1;
+        }
+
+        .hero .container,
+        .hero-content {
+        position: relative;
+        z-index: 2;
+        }
+
+
+        .hero:hover {
+            background: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1400&q=80') no-repeat center center/cover;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">Nexus<span>Marketing</span></a>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="index.html" class="nav-link active">Home</a></li>
+                    <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+                    <li class="nav-item"><a href="#portfolio" class="nav-link">Portfolio</a></li>
+                    <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+                    <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Elevate Your Brand with Strategic Marketing</h1>
+                <p>We craft data-driven marketing strategies that deliver measurable results and drive sustainable growth for your business.</p>
+                <a href="#contact" class="btn btn-primary">Get Started</a>
+                <a href="services.html" class="btn btn-secondary">Our Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clients Section -->
+    <section class="clients">
+        <div class="container">
+            <h2>Trusted by Leading Brands</h2>
+            <div class="client-logos">
+                <img src="https://logo.clearbit.com/google.com" alt="Google">
+                <img src="https://logo.clearbit.com/microsoft.com" alt="Microsoft">
+                <img src="https://logo.clearbit.com/airbnb.com" alt="Airbnb">
+                <img src="https://logo.clearbit.com/shopify.com" alt="Shopify">
+                <img src="https://logo.clearbit.com/slack.com" alt="Slack">
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+        <div class="container">
+            <div class="about-content">
+                <h2>Why Choose Nexus Marketing</h2>
+                <p>We're not just another marketing agency. We're strategic partners who take the time to understand your business goals and challenges.</p>
+                
+                <div class="about-features">
+                    <div class="feature">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Data-Driven Approach</h3>
+                        <p>Our strategies are backed by comprehensive data analysis and market research.</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-lightbulb"></i>
+                        <h3>Creative Excellence</h3>
+                        <p>We combine creativity with strategy to deliver memorable campaigns.</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-trophy"></i>
+                        <h3>Proven Results</h3>
+                        <p>We measure success by the tangible results we deliver for our clients.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Preview -->
+    <section class="services-preview">
+        <div class="container">
+            <h2>Our Core Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-bullseye"></i>
+                    <h3>Digital Strategy</h3>
+                    <p>Comprehensive digital roadmaps tailored to your business objectives.</p>
+                    <a href="services.html#digital-strategy" class="btn-link">Learn More</a>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-ad"></i>
+                    <h3>Performance Marketing</h3>
+                    <p>Data-driven campaigns that maximize ROI across all digital channels.</p>
+                    <a href="services.html#performance-marketing" class="btn-link">Learn More</a>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-search"></i>
+                    <h3>SEO & Content</h3>
+                    <p>Organic growth strategies that improve visibility and drive qualified traffic.</p>
+                    <a href="services.html#seo-content" class="btn-link">Learn More</a>
+                </div>
+            </div>
+            <div class="text-center">
+                <a href="services.html" class="btn btn-primary">View All Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Preview -->
+    <section class="portfolio-preview" id="portfolio">
+        <div class="container">
+            <h2>Our Portfolio</h2>
+            <p class="subtitle">Explore our recent work and successful campaigns</p>
+            
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Tech Startup Branding">
+                    <div class="portfolio-overlay">
+                        <h3>Tech Startup Branding</h3>
+                        <p>Complete brand identity for a SaaS company</p>
+                        <a href="#" class="btn-link">View Case Study</a>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="E-commerce Campaign">
+                    <div class="portfolio-overlay">
+                        <h3>E-commerce Campaign</h3>
+                        <p>300% ROI on holiday marketing campaign</p>
+                        <a href="#" class="btn-link">View Case Study</a>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Healthcare SEO">
+                    <div class="portfolio-overlay">
+                        <h3>Healthcare SEO</h3>
+                        <p>250% increase in organic traffic</p>
+                        <a href="#" class="btn-link">View Case Study</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <a href="#" class="btn btn-primary">View Full Portfolio</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <h2>What Our Clients Say</h2>
+            <div class="testimonial-slider">
+                <div class="testimonial active">
+                    <p>"Nexus Marketing transformed our digital presence. Their strategic approach delivered a 300% increase in qualified leads within six months."</p>
+                    <div class="client-info">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah Johnson">
+                        <div>
+                            <h4>Sarah Johnson</h4>
+                            <span>CEO, TechSolutions</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <p>"The team's creativity and attention to detail exceeded our expectations. Our brand has never been stronger."</p>
+                    <div class="client-info">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Chen">
+                        <div>
+                            <h4>Michael Chen</h4>
+                            <span>CMO, Global Retail</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <p>"Working with Nexus has been a game-changer. Their data-driven approach took our marketing to the next level."</p>
+                    <div class="client-info">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Emily Rodriguez">
+                        <div>
+                            <h4>Emily Rodriguez</h4>
+                            <span>Marketing Director, HealthPlus</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-controls">
+                <button class="slider-prev"><i class="fas fa-chevron-left"></i></button>
+                <div class="slider-dots"></div>
+                <button class="slider-next"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Preview -->
+    <section class="blog-preview">
+        <div class="container">
+            <h2>Latest Insights</h2>
+            <div class="blog-grid">
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Digital Marketing Trends">
+                        <span class="blog-category">Strategy</span>
+                    </div>
+                    <div class="blog-content">
+                        <h3><a href="blog.html#post1">The Future of Digital Marketing in 2023</a></h3>
+                        <p>Explore the key trends shaping the marketing landscape this year and how to adapt your strategy.</p>
+                        <div class="blog-meta">
+                            <span>June 15, 2023</span>
+                            <a href="blog.html#post1">Read More</a>
+                        </div>
+                    </div>
+                </article>
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="SEO Strategies">
+                        <span class="blog-category">SEO</span>
+                    </div>
+                    <div class="blog-content">
+                        <h3><a href="blog.html#post2">SEO Myths Debunked: What Really Works</a></h3>
+                        <p>We separate fact from fiction in the ever-changing world of search engine optimization.</p>
+                        <div class="blog-meta">
+                            <span>June 5, 2023</span>
+                            <a href="blog.html#post2">Read More</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            <div class="text-center">
+                <a href="blog.html" class="btn btn-primary">View All Articles</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h2>Ready to Grow Your Business?</h2>
+                    <p>Schedule a consultation with our team to discuss how we can help you achieve your marketing goals.</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+1 (555) 123-4567</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>hello@nexusmarketing.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 Marketing Ave, Suite 500<br>New York, NY 10001</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" id="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="company" placeholder="Company Name">
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" placeholder="How can we help you?" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Nexus Marketing</h3>
+                    <p>Strategic marketing solutions that drive growth and deliver measurable results for ambitious businesses.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="#portfolio">Portfolio</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="services.html#digital-strategy">Digital Strategy</a></li>
+                        <li><a href="services.html#performance-marketing">Performance Marketing</a></li>
+                        <li><a href="services.html#seo-content">SEO & Content</a></li>
+                        <li><a href="services.html#brand-identity">Brand Identity</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to our newsletter for marketing insights and tips.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your Email" required>
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 GCraft. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

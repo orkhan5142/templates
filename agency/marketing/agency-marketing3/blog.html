@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketing Insights | Nexus Marketing Blog</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .page-hero {
+        position: relative;
+        background: url('https://images.unsplash.com/photo-1533750516457-a7f992034fec?q=80&w=2106&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
+        transition: background 0.3s ease-in-out;
+        }
+
+        .page-hero::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+        box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.6);
+        z-index: 1;
+        }
+
+        .page-hero .container,
+        .page-hero-content {
+        position: relative;
+        z-index: 2;
+        }
+
+
+        .page-hero:hover {
+            background: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1400&q=80') no-repeat center center/cover;
+        }
+    </style>
+
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">Nexus<span>Marketing</span></a>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+                    <li class="nav-item"><a href="index.html#portfolio" class="nav-link">Portfolio</a></li>
+                    <li class="nav-item"><a href="blog.html" class="nav-link active">Blog</a></li>
+                    <li class="nav-item"><a href="index.html#contact" class="nav-link">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Blog Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <h1>Marketing Insights</h1>
+            <p>Expert perspectives on digital marketing trends, strategies, and best practices</p>
+        </div>
+    </section>
+
+    <!-- Blog Content -->
+    <section class="blog-listing">
+        <div class="container">
+            <div class="blog-main">
+                <!-- Featured Post -->
+                <article class="featured-post" id="post1">
+                    <div class="featured-image">
+                        <img src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Digital Marketing Trends">
+                    </div>
+                    <div class="featured-content">
+                        <span class="post-category">Strategy</span>
+                        <h2>The Future of Digital Marketing in 2023</h2>
+                        <div class="post-meta">
+                            <span class="author">By John Smith</span>
+                            <span class="date">June 15, 2023</span>
+                            <span class="reading-time">8 min read</span>
+                        </div>
+                        <p>As we navigate through 2023, the digital marketing landscape continues to evolve at a rapid pace. Brands that stay ahead of these changes will be positioned for success, while those that don't risk falling behind. In this comprehensive article, we explore the key trends shaping marketing this year and how businesses can adapt their strategies to remain competitive.</p>
+                        <h3>The Rise of AI in Marketing</h3>
+                        <p>Artificial intelligence is no longer a futuristic concept—it's here and transforming how we approach marketing. From predictive analytics to personalized content generation, AI tools are enabling marketers to work smarter and more efficiently. However, the human touch remains essential for strategy and creative direction.</p>
+                        <h3>Privacy-First Marketing</h3>
+                        <p>With increasing privacy regulations and the phase-out of third-party cookies, marketers must develop new approaches to data collection and targeting. First-party data strategies, contextual targeting, and privacy-compliant tracking solutions are becoming essential components of the modern marketing stack.</p>
+                        <h3>Video Content Dominance</h3>
+                        <p>Video continues to dominate content consumption, with short-form video platforms experiencing explosive growth. Brands need to develop video content strategies that align with platform-specific best practices and audience preferences.</p>
+                        <div class="post-tags">
+                            <a href="#">#digitalmarketing</a>
+                            <a href="#">#marketingtrends</a>
+                            <a href="#">#2023</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- More Articles -->
+                <div class="more-articles">
+                    <h3>More Articles</h3>
+                    <div class="articles-grid">
+                        <article class="article-card" id="post2">
+                            <div class="article-image">
+                                <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="SEO Strategies">
+                                <span class="category">SEO</span>
+                            </div>
+                            <div class="article-content">
+                                <h4>SEO Myths Debunked: What Really Works</h4>
+                                <p>We separate fact from fiction in the ever-changing world of search engine optimization.</p>
+                                <div class="article-meta">
+                                    <span>June 5, 2023</span>
+                                    <span>6 min read</span>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="article-card" id="post3">
+                            <div class="article-image">
+                                <img src="https://images.unsplash.com/photo-1611162616475-46b635cb6868?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="LinkedIn Marketing">
+                                <span class="category">Social Media</span>
+                            </div>
+                            <div class="article-content">
+                                <h4>Mastering LinkedIn for B2B Marketing</h4>
+                                <p>Proven strategies to generate leads and build authority on LinkedIn.</p>
+                                <div class="article-meta">
+                                    <span>May 28, 2023</span>
+                                    <span>5 min read</span>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="article-card" id="post4">
+                            <div class="article-image">
+                                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Marketing Analytics">
+                                <span class="category">Analytics</span>
+                            </div>
+                            <div class="article-content">
+                                <h4>Marketing Attribution: Beyond Last-Click</h4>
+                                <p>Understanding the true impact of your marketing channels with advanced attribution models.</p>
+                                <div class="article-meta">
+                                    <span>May 15, 2023</span>
+                                    <span>7 min read</span>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="article-card" id="post5">
+                            <div class="article-image">
+                                <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Content Marketing">
+                                <span class="category">Content</span>
+                            </div>
+                            <div class="article-content">
+                                <h4>Content That Converts: A Data-Driven Approach</h4>
+                                <p>How to create content that drives engagement and conversions based on audience insights.</p>
+                                <div class="article-meta">
+                                    <span>May 2, 2023</span>
+                                    <span>8 min read</span>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <aside class="blog-sidebar">
+                <div class="sidebar-widget">
+                    <h4>Categories</h4>
+                    <ul class="categories">
+                        <li><a href="#">Strategy <span>12</span></a></li>
+                        <li><a href="#">SEO <span>8</span></a></li>
+                        <li><a href="#">Content Marketing <span>15</span></a></li>
+                        <li><a href="#">Social Media <span>7</span></a></li>
+                        <li><a href="#">Analytics <span>5</span></a></li>
+                        <li><a href="#">Branding <span>9</span></a></li>
+                    </ul>
+                </div>
+                <div class="sidebar-widget">
+                    <h4>Popular Tags</h4>
+                    <div class="tags">
+                        <a href="#">#digitalmarketing</a>
+                        <a href="#">#seo</a>
+                        <a href="#">#contentstrategy</a>
+                        <a href="#">#socialmedia</a>
+                        <a href="#">#branding</a>
+                        <a href="#">#analytics</a>
+                        <a href="#">#conversion</a>
+                        <a href="#">#growth</a>
+                    </div>
+                </div>
+                <div class="sidebar-widget">
+                    <h4>Subscribe</h4>
+                    <p>Get the latest marketing insights delivered to your inbox.</p>
+                    <form class="sidebar-newsletter">
+                        <input type="email" placeholder="Your Email" required>
+                        <button type="submit" class="btn btn-primary">Subscribe</button>
+                    </form>
+                </div>
+            </aside>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2>Stay Updated with Our Latest Insights</h2>
+                <p>Subscribe to our newsletter for expert marketing tips, industry trends, and case studies.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Nexus Marketing</h3>
+                    <p>Strategic marketing solutions that drive growth and deliver measurable results for ambitious businesses.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="index.html#portfolio">Portfolio</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="services.html#digital-strategy">Digital Strategy</a></li>
+                        <li><a href="services.html#performance-marketing">Performance Marketing</a></li>
+                        <li><a href="services.html#seo-content">SEO & Content</a></li>
+                        <li><a href="services.html#brand-identity">Brand Identity</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to our newsletter for marketing insights and tips.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your Email" required>
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 GCraft. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
