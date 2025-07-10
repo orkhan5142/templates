@@ -408,7 +408,7 @@ img {
 /* Hero Section */
 .hero {
     min-height: 100vh;
-    padding: 10rem 0 5rem;
+    padding: 7rem 0 5rem;
     display: flex;
     align-items: center;
     position: relative;
@@ -464,6 +464,7 @@ img {
     display: flex;
     gap: 1.5rem;
     margin-bottom: 3rem;
+    align-items: center;
 }
 
 .tech-stack {
@@ -712,7 +713,7 @@ img {
 
 /* Clients Section */
 .clients {
-    padding: 5rem 0;
+    padding: 4rem 0;
     background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
     position: relative;
     overflow: hidden;
@@ -788,8 +789,8 @@ img {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 180px;
-    height: 80px;
+    width: 200px;
+    height: 100px;
     padding: 1rem;
     background: var(--bg-primary);
     border: 2px solid transparent;
@@ -822,8 +823,8 @@ img {
 }
 
 .client-logo {
-    max-height: 55px;
-    max-width: 140px;
+    max-height: 70px;
+    max-width: 160px;
     width: auto;
     height: auto;
     object-fit: contain;
@@ -983,20 +984,20 @@ img {
     }
 
     .logo-card {
-        width: 140px;
-        height: 60px;
+        width: 160px; 
+        height: 80px;
         padding: 0.75rem;
     }
 
     .client-logo {
-        max-height: 35px;
-        max-width: 110px;
+        max-height: 60px; 
+        max-width: 140px;
     }
 }
 
 /* Services Section */
 .services {
-    padding: 8rem 0;
+    padding: 6rem 0;
     position: relative;
 }
 
@@ -1107,7 +1108,7 @@ img {
 
 /* Solutions Section */
 .solutions {
-    padding: 8rem 0;
+    padding: 6rem 0;
     position: relative;
 }
 
@@ -1206,7 +1207,7 @@ img {
 
 /* Work Section */
 .work {
-    padding: 8rem 0;
+    padding: 6rem 0;
     position: relative;
 }
 
@@ -1330,7 +1331,7 @@ img {
 
 /* About Section */
 .about {
-    padding: 8rem 0;
+    padding: 6rem 0;
     position: relative;
 }
 
@@ -1419,7 +1420,7 @@ img {
 
 /* Contact Section */
 .contact {
-    padding: 8rem 0;
+    padding: 6rem 0;
     position: relative;
 }
 
@@ -1667,25 +1668,37 @@ img {
 }
 
 @media (max-width: 768px) {
+    .services,
+    .solutions,
+    .work,
+    .about,
+    .contact {
+        padding: 4rem 0;
+    }
+
+    .clients {
+        padding: 3rem 0; 
+    }
     
     .nav-list {
         position: fixed;
-        top: 72px; ;
-        left: -100%;
+        top: 72px;
+        right: -100%; 
         width: 100%;
         height: 100vh;
-        background: rgba(10, 10, 26, 0.95); /* Slightly transparent backdrop */
-        backdrop-filter: blur(5px); /* Add blur for modern look */
+        background: rgba(10, 10, 26, 0.95);
+        backdrop-filter: blur(5px);
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 3rem; /* Increase gap for better spacing */
+        gap: 3rem;
         transition: var(--transition);
         z-index: 1000;
     }
     .nav-list.active {
-        left: 0;
+        right: 0; 
     }
+
     
     .hamburger {
         display: flex;

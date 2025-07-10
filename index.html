@@ -348,17 +348,23 @@
             height: 200px;
             overflow: hidden;
             position: relative;
+            background-color: #000; /* iframe yüklənənə qədər arxa fon */
         }
 
-        .template-img img {
+        .template-img iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
+            border: none;
+            opacity: 0; /* Başlanğıcda görünməz */
+            transition: opacity 0.6s ease; /* Zərif keçid effekti */
+            pointer-events: none; /* Kliklərin arxadakı elementlərə ötürülməsi üçün */
         }
-
-        .template-card:hover .template-img img {
-            transform: scale(1.05);
+        
+        .template-img iframe.loaded {
+            opacity: 1; /* Yükləndikdə görünən olur */
         }
 
         .template-badge {
@@ -371,6 +377,7 @@
             border-radius: 50px;
             font-size: 0.8rem;
             font-weight: 600;
+            z-index: 5; /* iframe-in üstündə qalması üçün */
         }
 
         .template-info {
@@ -421,8 +428,9 @@
         }
 
         .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 2rem;
         }
 
@@ -434,6 +442,9 @@
             text-align: center;
             transition: var(--transition);
             border: 1px solid #333;
+            flex-basis: 300px;
+            flex-grow: 1;
+            max-width: 350px;
         }
 
         .feature-card:hover {
@@ -558,7 +569,7 @@
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             color: rgb(255, 255, 255);
             text-align: center;
-            padding: 4rem 0;
+            padding: 4rem 2rem;
             border-radius: 10px;
             margin: 3rem 0;
         }
@@ -599,6 +610,14 @@
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 3rem;
             margin-bottom: 3rem;
+        }
+
+        .footer-col h1 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+            color: white;
         }
 
         .footer-col h3 {
@@ -668,6 +687,96 @@
             color: #ccc;
         }
 
+        /* =========================================== */
+        /* == IMPROVED MOBILE SLIDER STYLES == */
+        /* =========================================== */
+        .mobile-slider-container {
+            display: none; /* Hidden by default, enabled via JS and media query */
+            position: relative;
+            margin: 0 -15px; /* Compensate for container padding */
+        }
+        .slider-wrapper {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+            gap: 1rem;
+            scrollbar-width: none; /* Firefox */
+        }
+        .slider-wrapper::before,
+        .slider-wrapper::after {
+            content: '';
+            flex: 0 0 10%;
+        }
+
+        .slider-wrapper::-webkit-scrollbar {
+            display: none; /* Safari and Chrome */
+        }
+        .slider-item {
+            flex: 0 0 80%; /* Each item takes 80% of the container width */
+            scroll-snap-align: center; /* Snap to the center of the viewport */
+            transition: transform 0.4s ease, opacity 0.4s ease;
+            transform: scale(0.9); /* Inactive items are smaller */
+            opacity: 0.7; /* Inactive items are faded */
+        }
+        .slider-item.is-active {
+            transform: scale(1); /* Active item is full size */
+            opacity: 1; /* Active item is fully visible */
+        }
+        .slider-item .template-card,
+        .slider-item .feature-card {
+            width: 100%;
+            transform: none !important; /* Disable hover transform on mobile slider */
+            box-shadow: var(--shadow);
+        }
+        .mobile-slider-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 2rem;
+            gap: 1.5rem;
+        }
+        .slider-arrow {
+            background: #222;
+            border: 1px solid #444;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+        }
+        .slider-arrow:hover {
+            background: var(--primary);
+            color: black;
+        }
+        .dlgslider-arrow.disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            background: #222;
+        }
+        .slider-points {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+        }
+        .slider-point {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #444;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .slider-point.active {
+            background-color: var(--primary);
+            transform: scale(1.4);
+        }
 
         /* Mobile Styles */
         @media (max-width: 992px) {
@@ -691,16 +800,21 @@
         }
 
         @media (max-width: 768px) {
+            .logo {
+                font-size: 1.5rem;
+            }
             .mobile-menu-btn {
                 display: block;
+                margin-top: auto;
             }
 
             .nav-links {
                 position: fixed;
-                top: 80px;
-                left: -100%;
+                top: var(--header-height, 60px);
+                right: -100%;
+                left: auto;
                 width: 100%;
-                height: calc(100vh - 80px);
+                height: calc(100vh - var(--header-height, 60px));
                 background-color: black;
                 flex-direction: column;
                 align-items: center;
@@ -711,7 +825,7 @@
             }
 
             .nav-links.active {
-                left: 0;
+                right: 0;
             }
 
             .hero h1 {
@@ -744,10 +858,27 @@
                 padding-bottom: 1rem;
                 flex-wrap: nowrap;
                 -webkit-overflow-scrolling: touch;
+                -webkit-mask-image: linear-gradient(to right, transparent, black 20px, black 95%, transparent);
+                mask-image: linear-gradient(to right, transparent, black 20px, black 95%, transparent);
+                padding-left: 20px;
+                padding-right: 20px;
+                margin-left: -20px;
+                margin-right: -20px;
             }
 
             .filter-btn {
                 white-space: nowrap;
+                font-weight: bold;
+            }
+
+            .mobile-slider-enabled {
+                overflow-x: hidden;
+            }
+            .mobile-slider-enabled .mobile-slider-container {
+                display: block;
+            }
+            .mobile-slider-enabled .original-grid {
+                display: none;
             }
         }
 
@@ -771,6 +902,15 @@
 
             .cta h2 {
                 font-size: 1.8rem;
+            }
+
+            .slider-item {
+                flex: 0 0 85%;
+            }
+
+            .slider-wrapper::before,
+            .slider-wrapper::after {
+                flex: 0 0 7.5%;
             }
         }
 
@@ -796,7 +936,104 @@
         .delay-3 {
             animation-delay: 0.6s;
         }
-    </style>
+
+        /* =========================================== */
+        /* ==       MODAL (POPUP) STYLES          == */
+        /* =========================================== */
+        .modal-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-container.visible {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            cursor: pointer;
+        }
+
+        .modal-content {
+            position: relative;
+            background-color: #1a1a1a;
+            width: 90%;
+            height: 90%;
+            max-width: 1600px;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            border: 1px solid #333;
+        }
+
+        .modal-container.visible .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary);
+            color: black;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.8rem;
+            line-height: 40px;
+            text-align: center;
+            cursor: pointer;
+            z-index: 10;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+            transition: var(--transition);
+        }
+        .modal-close-btn:hover {
+            background-color: var(--secondary);
+            transform: rotate(90deg);
+        }
+
+        .modal-content iframe {
+            width: 100%;
+            height: 100%;
+            border-radius: 5px;
+            background-color: white;
+        }
+
+        .modal-loader {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 1.5rem;
+            display: none;
+        }
+
+        body.modal-open {
+            overflow: hidden;
+        }
+
+</style>
 </head>
 <body>
     <!-- Header -->
@@ -825,11 +1062,11 @@
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
-                    <h1>Beautiful, Responsive Website Templates</h1>
+                    <h1>Elegant, Responsive Website Templates</h1>
                     <p>Discover our collection of professionally designed templates that will make your website stand out. Fully customizable and mobile-friendly.</p>
                     <div class="hero-buttons">
                         <a href="#templates" class="btn btn-primary">Browse Templates</a>
-                        <a href="#" class="btn btn-outline">Learn More</a>
+                        <a href="https://gcraft.tech/" class="btn btn-outline">Learn More</a>
                     </div>
                 </div>
                 <div class="hero-image floating">
@@ -853,237 +1090,205 @@
                 <button class="filter-btn" data-category="agency">Agency</button>
                 <button class="filter-btn" data-category="portfolio">Portfolio</button>
                 <button class="filter-btn" data-category="ChatBot">ChatBot</button>
-                
             </div>
 
-            <div class="templates-grid">
-    <!-- Template 1 - Agency -->
-    <div class="template-card" data-categories="agency corporate">
-        <div class="template-img">
-            <img src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Business Template">
-            <span class="template-badge">Popular</span>
-        </div>
-        <div class="template-info">
-            <h3>Nova Tech</h3>
-            <div class="template-categories">
-                <span class="category-badge badge-agency">Agency</span>
-                <span class="category-badge badge-corporate">Corporate</span>
-            </div>
-            <p>Perfect for businesses and corporate websites with clean, professional design.</p>
-            <div class="template-meta">
-                
-                <div class="template-actions">
-                    <a href="agency/Dev/agencyDev-main/index.html" class="btn btn-primary">Preview</a>
-                    <a href="https://gcraft.tech/discuss-project" class="btn btn-outline">Contact</a>
+            <div class="templates-grid original-grid">
+                <!-- Template 1 - QuantumLeap Tech -->
+                <div class="template-card" data-categories="agency corporate">
+                    <div class="template-img">
+                        <!-- Şəkil ləğv edildi, iframe JS ilə əlavə olunacaq -->
+                        <span class="template-badge">Popular</span>
+                    </div>
+                    <div class="template-info">
+                        <h3>QuantumLeap Tech</h3>
+                        <div class="template-categories">
+                            <span class="category-badge badge-agency">Agency</span>
+                            <span class="category-badge badge-corporate">Corporate</span>
+                        </div>
+                        <p>A cutting-edge template for ambitious tech firms and software agencies. Present your services with the professionalism and innovation you represent.</p>
+                        <div class="template-meta">
+                            <div class="template-actions">
+                                <a href="agency/Dev/agencyDev-main/index.html" class="btn btn-primary">Preview</a>
+                                <a href="https://gcraft.tech/discuss-project" class="btn btn-outline">Contact</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Template 2 - Agency -->
-    <div class="template-card" data-categories="agency corporate">
-        <div class="template-img">
-            <img src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Business Template">
-            <span class="template-badge">Popular</span>
-        </div>
-        <div class="template-info">
-            <h3>Blockchain</h3>
-            <div class="template-categories">
-                <span class="category-badge badge-agency">Agency</span>
-                <span class="category-badge badge-corporate">Corporate</span>
-            </div>
-            <p>Perfect for businesses and corporate websites with clean, professional design.</p>
-            <div class="template-meta">
-                
-                <div class="template-actions">
-                    <a href="agency/Dev/agencydev2/index.html" class="btn btn-primary">Preview</a>
-                    <a href="https://gcraft.tech/discuss-project" class="btn btn-outline">Contact</a>
+                <!-- Template 2 - GrowthMatrix Agency -->
+                <div class="template-card" data-categories="agency corporate">
+                    <div class="template-img">
+                        <span class="template-badge">Popular</span>
+                    </div>
+                    <div class="template-info">
+                        <h3>GrowthMatrix Agency</h3>
+                        <div class="template-categories">
+                            <span class="category-badge badge-agency">Agency</span>
+                            <span class="category-badge badge-corporate">Corporate</span>
+                        </div>
+                        <p>Elevate your marketing agency with a design focused on data and results. Build client trust by showcasing analytics and success stories seamlessly.</p>
+                        <div class="template-meta">
+                            <div class="template-actions">
+                                <a href="agency/marketing/agency-marketing3/index.html" class="btn btn-primary">Preview</a>
+                                <a href="https://gcraft.tech/discuss-project" class="btn btn-outline">Contact</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Template 3 - Agency -->
-    <div class="template-card" data-categories="agency corporate">
-        <div class="template-img">
-            <img src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Business Template">
-            <span class="template-badge">Popular</span>
-        </div>
-        <div class="template-info">
-            <h3>Innovative Technology Solutions</h3>
-            <div class="template-categories">
-                <span class="category-badge badge-agency">Agency</span>
-                <span class="category-badge badge-corporate">Corporate</span>
-            </div>
-            <p>Perfect for businesses and corporate websites with clean, professional design.</p>
-            <div class="template-meta">
-                
-                <div class="template-actions">
-                    <a href="agency/Dev/agencydev3/index.html" class="btn btn-primary">Preview</a>
-                    <a href="https://gcraft.tech/discuss-project" class="btn btn-outline">Contact</a>
+                <!-- Template 3 - Web3 Vanguard -->
+                <div class="template-card" data-categories="agency corporate">
+                    <div class="template-img">
+                        <span class="template-badge">New</span>
+                    </div>
+                    <div class="template-info">
+                        <h3>Web3 Vanguard</h3>
+                        <div class="template-categories">
+                            <span class="category-badge badge-agency">Agency</span>
+                            <span class="category-badge badge-corporate">Corporate</span>
+                        </div>
+                        <p>Position your project at the forefront of the decentralized world. A masterpiece for blockchain, crypto, and Web3 ventures demanding a futuristic look.</p>
+                        <div class="template-meta">
+                            <div class="template-actions">
+                                <a href="agency/Dev/agencydev2/index.html" class="btn btn-primary">Preview</a>
+                                <a href="https://gcraft.tech/discuss-project" class="btn btn-outline">Contact</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Template 4 - Agency -->
-    <div class="template-card" data-categories="agency corporate">
-        <div class="template-img">
-            <img src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Business Template">
-            <span class="template-badge">Popular</span>
-        </div>
-        <div class="template-info">
-            <h3>ELYSIUM</h3>
-            <div class="template-categories">
-                <span class="category-badge badge-agency">Agency</span>
-                <span class="category-badge badge-corporate">Corporate</span>
-            </div>
-            <p>Perfect for businesses and corporate websites with clean, professional design.</p>
-            <div class="template-meta">
-                
-                <div class="template-actions">
-                    <a href="agency/marketing/agency-marketing2/index.html" class="btn btn-primary">Preview</a>
-                    <a href="https://gcraft.tech/discuss-project" class="btn btn-outline">Contact</a>
+                <!-- Template 4 - Innovatech Hub -->
+                <div class="template-card" data-categories="agency corporate">
+                    <div class="template-img">
+                        <span class="template-badge">New</span>
+                    </div>
+                    <div class="template-info">
+                        <h3>Innovatech Hub</h3>
+                        <div class="template-categories">
+                            <span class="category-badge badge-agency">Agency</span>
+                            <span class="category-badge badge-corporate">Corporate</span>
+                        </div>
+                        <p>The definitive template for IT solutions providers and tech consultants. Its clean, structured design highlights your firm's expertise and reliability.</p>
+                        <div class="template-meta">
+                            <div class="template-actions">
+                                <a href="agency/Dev/agencydev3/index.html" class="btn btn-primary">Preview</a>
+                                <a href="https://gcraft.tech/discuss-project" class="btn btn-outline">Contact</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Template 5 - Agency -->
-    <div class="template-card" data-categories="agency corporate">
-        <div class="template-img">
-            <img src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Business Template">
-            <span class="template-badge">Popular</span>
-        </div>
-        <div class="template-info">
-            <h3>Nexus Marketing</h3>
-            <div class="template-categories">
-                <span class="category-badge badge-agency">Agency</span>
-                <span class="category-badge badge-corporate">Corporate</span>
-            </div>
-            <p>Perfect for businesses and corporate websites with clean, professional design.</p>
-            <div class="template-meta">
-                
-                <div class="template-actions">
-                    <a href="agency/marketing/agency-marketing3/index.html" class="btn btn-primary">Preview</a>
-                    <a href="https://gcraft.tech/discuss-project" class="btn btn-outline">Contact</a>
+                <!-- Template 5 - Elysian Digital -->
+                <div class="template-card" data-categories="agency corporate">
+                    <div class="template-img">
+                        <span class="template-badge">New</span>
+                    </div>
+                    <div class="template-info">
+                        <h3>Elysian Digital</h3>
+                        <div class="template-categories">
+                            <span class="category-badge badge-agency">Agency</span>
+                            <span class="category-badge badge-corporate">Corporate</span>
+                        </div>
+                        <p>Exude sophistication and class. This elegant template is crafted for high-end marketing agencies that cater to luxury and premium brands.</p>
+                        <div class="template-meta">
+                            <div class="template-actions">
+                                <a href="agency/marketing/agency-marketing2/index.html" class="btn btn-primary">Preview</a>
+                                <a href="https://gcraft.tech/discuss-project" class="btn btn-outline">Contact</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    
-
-    <!-- Template 6 - Portfolio -->
-    <div class="template-card" data-categories="portfolio">
-        <div class="template-img">
-            <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Portfolio Template">
-        </div>
-        <div class="template-info">
-            <h3>Alex Taylor</h3>
-            <div class="template-categories">
-                <span class="category-badge badge-portfolio">Portfolio</span>
-            </div>
-            <p>Showcase your work with this elegant portfolio template for creatives.</p>
-            <div class="template-meta">
-                
-                <div class="template-actions">
-                    <a href="portfolio/index1.html" class="btn btn-primary">Preview</a>
-                    <a href="https://gcraft.tech/discuss-project" class="btn btn-outline">Contact</a>
+                <!-- Template 6 - The Digital Architect -->
+                <div class="template-card" data-categories="portfolio">
+                    <div class="template-img">
+                        <span class="template-badge">New</span>
+                    </div>
+                    <div class="template-info">
+                        <h3>Alex Taylor</h3>
+                        <div class="template-categories">
+                            <span class="category-badge badge-portfolio">Portfolio</span>
+                        </div>
+                        <p>For the meticulous UI/UX designer. This portfolio is your digital canvas to showcase stunning user interfaces and thoughtful user experiences.</p>
+                        <div class="template-meta">
+                            <div class="template-actions">
+                                <a href="portfolio/index1.html" class="btn btn-primary">Preview</a>
+                                <a href="https://gcraft.tech/discuss-project" class="btn btn-outline">Contact</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Template 7 - Portfolio -->
-    <div class="template-card" data-categories="portfolio">
-        <div class="template-img">
-            <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Portfolio Template">
-        </div>
-        <div class="template-info">
-            <h3>Liam Sterling</h3>
-            <div class="template-categories">
-                <span class="category-badge badge-portfolio">Portfolio</span>
-            </div>
-            <p>Showcase your work with this elegant portfolio template for creatives.</p>
-            <div class="template-meta">
-                
-                <div class="template-actions">
-                    <a href="portfolio/index2.html" class="btn btn-primary">Preview</a>
-                    <a href="https://gcraft.tech/discuss-project" class="btn btn-outline">Contact</a>
+                <!-- Template 7 - CodeCrafter's Canvas -->
+                <div class="template-card" data-categories="portfolio">
+                    <div class="template-img">
+                        <span class="template-badge">New</span>
+                    </div>
+                    <div class="template-info">
+                        <h3>Liam.dev</h3>
+                        <div class="template-categories">
+                            <span class="category-badge badge-portfolio">Portfolio</span>
+                        </div>
+                        <p>A developer's dream portfolio. The sleek, dark-mode design is the perfect backdrop to showcase your complex projects and elegant code.</p>
+                        <div class="template-meta">
+                            <div class="template-actions">
+                                <a href="portfolio/index2.html" class="btn btn-primary">Preview</a>
+                                <a href="https://gcraft.tech/discuss-project" class="btn btn-outline">Contact</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Template 8 - ChatBot -->
-    <div class="template-card" data-categories="ChatBot">
-        <div class="template-img">
-            <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1172&q=80" alt="ChatBot Template">
-            <span class="template-badge">New</span>
-        </div>
-        <div class="template-info">
-            <h3>ChatBot1</h3>
-            <div class="template-categories">
-                <span class="category-badge badge-ChatBot">ChatBot</span>
-            </div>
-            <p>Modern ChatBot template with excellent typography and reading experience.</p>
-            <div class="template-meta">
-                
-                <div class="template-actions">
-                    <a href="chatbot/index1.html" class="btn btn-primary">Preview</a>
-                    <a href="https://gcraft.tech/discuss-project" class="btn btn-outline">Contact</a>
+                <!-- Template 8 - Synapse AI -->
+                <div class="template-card" data-categories="ChatBot">
+                    <div class="template-img">
+                        <span class="template-badge">Popular</span>
+                    </div>
+                    <div class="template-info">
+                        <h3>ChatBot Dark</h3>
+                        <div class="template-categories">
+                            <span class="category-badge badge-ChatBot">ChatBot</span>
+                        </div>
+                        <p>Unleash a powerful, intelligent presence with this elite chatbot interface. Its premium, dark aesthetic is perfect for advanced AI applications.</p>
+                        <div class="template-meta">
+                            <div class="template-actions">
+                                <a href="chatbot/index1.html" class="btn btn-primary">Preview</a>
+                                <a href="https://gcraft.tech/discuss-project" class="btn btn-outline">Contact</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
-
-     <!-- Template 9 - ChatBot -->
-    <div class="template-card" data-categories="ChatBot">
-        <div class="template-img">
-            <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1172&q=80" alt="ChatBot Template">
-            <span class="template-badge">New</span>
-        </div>
-        <div class="template-info">
-            <h3>ChatBot2</h3>
-            <div class="template-categories">
-                <span class="category-badge badge-ChatBot">ChatBot</span>
-            </div>
-            <p>Modern ChatBot template with excellent typography and reading experience.</p>
-            <div class="template-meta">
-                
-                <div class="template-actions">
-                    <a href="chatbot/index2.html" class="btn btn-primary">Preview</a>
-                    <a href="https://gcraft.tech/discuss-project" class="btn btn-outline">Contact</a>
+                <!-- Template 9 - Aura Assistant -->
+                <div class="template-card" data-categories="ChatBot">
+                    <div class="template-img">
+                        <span class="template-badge">Popular</span>
+                    </div>
+                    <div class="template-info">
+                        <h3>ChatBot Lite</h3>
+                        <div class="template-categories">
+                            <span class="category-badge badge-ChatBot">ChatBot</span>
+                        </div>
+                        <p>Create a warm and engaging user experience. This clean, friendly chatbot UI is designed for seamless conversations and delightful customer support.</p>
+                        <div class="template-meta">
+                            <div class="template-actions">
+                                <a href="chatbot/index2.html" class="btn btn-primary">Preview</a>
+                                <a href="https://gcraft.tech/discuss-project" class="btn btn-outline">Contact</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
-
-     <!-- Template 10 - ChatBot -->
-    <div class="template-card" data-categories="ChatBot">
-        <div class="template-img">
-            <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1172&q=80" alt="ChatBot Template">
-            <span class="template-badge">New</span>
-        </div>
-        <div class="template-info">
-            <h3>ChatBot3</h3>
-            <div class="template-categories">
-                <span class="category-badge badge-ChatBot">ChatBot</span>
-            </div>
-            <p>Modern ChatBot template with excellent typography and reading experience.</p>
-            <div class="template-meta">
-                
-                <div class="template-actions">
-                    <a href="chatbot/index3.html" class="btn btn-primary">Preview</a>
-                    <a href="https://gcraft.tech/discuss-project" class="btn btn-outline">Contact</a>
+                <!-- Template 10 - Quantum Converse -->
+                <div class="template-card" data-categories="ChatBot">
+                    <div class="template-img">
+                        <span class="template-badge">Popular</span>
+                    </div>
+                    <div class="template-info">
+                        <h3>ChatBot Motion</h3>
+                        <div class="template-categories">
+                            <span class="category-badge badge-ChatBot">ChatBot</span>
+                        </div>
+                        <p>Step into the future of communication. A dynamic, tech-savvy chatbot UI with fluid animations, built for next-generation user interaction.</p>
+                        <div class="template-meta">
+                            <div class="template-actions">
+                                <a href="chatbot/index3.html" class="btn btn-primary">Preview</a>
+                                <a href="https://gcraft.tech/discuss-project" class="btn btn-outline">Contact</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-                
-               
             </div>
         </div>
     </section>
@@ -1095,57 +1300,34 @@
                 <h2>Why Choose Our Templates</h2>
                 <p>Our templates come with all the modern features you need to launch your website quickly.</p>
             </div>
-            <div class="features-grid">
+            <div class="features-grid original-grid">
                 <!-- Feature 1 -->
                 <div class="feature-card delay-1 floating">
-                    <div class="feature-icon">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
+                    <div class="feature-icon"><i class="fas fa-mobile-alt"></i></div>
                     <h3>Fully Responsive</h3>
                     <p>Looks perfect on all devices from desktop to mobile with adaptive layouts.</p>
                 </div>
-
                 <!-- Feature 2 -->
                 <div class="feature-card delay-2 floating">
-                    <div class="feature-icon">
-                        <i class="fas fa-bolt"></i>
-                    </div>
+                    <div class="feature-icon"><i class="fas fa-bolt"></i></div>
                     <h3>Fast Loading</h3>
                     <p>Optimized code and assets for lightning fast page load times.</p>
                 </div>
-
                 <!-- Feature 3 -->
                 <div class="feature-card delay-3 floating">
-                    <div class="feature-icon">
-                        <i class="fas fa-paint-brush"></i>
-                    </div>
+                    <div class="feature-icon"><i class="fas fa-paint-brush"></i></div>
                     <h3>Easy Customization</h3>
                     <p>Change colors, fonts and layouts with simple CSS variables.</p>
                 </div>
-
                 <!-- Feature 4 -->
                 <div class="feature-card delay-1 floating">
-                    <div class="feature-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
+                    <div class="feature-icon"><i class="fas fa-code"></i></div>
                     <h3>Clean Code</h3>
                     <p>Well-structured, commented code that's easy to modify and extend.</p>
                 </div>
-
                 <!-- Feature 5 -->
-                <div class="feature-card delay-2 floating">
-                    <div class="feature-icon">
-                        <i class="fas fa-search"></i>
-                    </div>
-                    <h3>SEO Ready</h3>
-                    <p>Built with SEO best practices to help your site rank higher.</p>
-                </div>
-
-                <!-- Feature 6 -->
                 <div class="feature-card delay-3 floating">
-                    <div class="feature-icon">
-                        <i class="fas fa-life-ring"></i>
-                    </div>
+                    <div class="feature-icon"><i class="fas fa-life-ring"></i></div>
                     <h3>Premium Support</h3>
                     <p>Dedicated support team to help with any questions or issues.</p>
                 </div>
@@ -1168,7 +1350,6 @@
                     <h4 class="testimonial-author">Sarah Johnson</h4>
                     <p class="testimonial-role">Professional Photographer</p>
                 </div>
-
                 <!-- Testimonial 2 -->
                 <div class="testimonial">
                     <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Michael Chen" class="testimonial-avatar">
@@ -1176,7 +1357,6 @@
                     <h4 class="testimonial-author">Michael Chen</h4>
                     <p class="testimonial-role">Marketing Director</p>
                 </div>
-
                 <!-- Testimonial 3 -->
                 <div class="testimonial">
                     <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Emily Rodriguez" class="testimonial-avatar">
@@ -1184,7 +1364,6 @@
                     <h4 class="testimonial-author">Emily Rodriguez</h4>
                     <p class="testimonial-role">Restaurant Owner</p>
                 </div>
-
                 <div class="slider-controls">
                     <div class="slider-dot active" data-slide="0"></div>
                     <div class="slider-dot" data-slide="1"></div>
@@ -1199,7 +1378,7 @@
         <div class="container">
             <div class="cta">
                 <h2>Ready to Launch Your Website?</h2>
-                <p>Join thousands of satisfied customers who have built beautiful websites with our templates.</p>
+                <p>Join thousands of satisfied customers who have built elegant websites with our templates.</p>
                 <a href="#" class="btn">Get Started Today</a>
             </div>
         </div>
@@ -1215,12 +1394,10 @@
                     <p>Providing high-quality website templates since 2015. Our mission is to make web design accessible to everyone.</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
                         <a href="#"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
-
                 <!-- Footer Column 2 -->
                 <div class="footer-col">
                     <h3>Quick Links</h3>
@@ -1232,7 +1409,6 @@
                         <li><a href="#">Blog</a></li>
                     </ul>
                 </div>
-
                 <!-- Footer Column 3 -->
                 <div class="footer-col">
                     <h3>Categories</h3>
@@ -1244,177 +1420,448 @@
                         <li><a href="#" data-category="restaurant">Restaurant Templates</a></li>
                     </ul>
                 </div>
-
-                <!-- Footer Column 4 -->
-                <div class="footer-col">
-                    <h3>Contact Info</h3>
-                    <ul>
-                        <li><i class="fas fa-map-marker-alt"></i> 123 Design Street, Creative City</li>
-                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
-                        <li><i class="fas fa-envelope"></i> hello@GCraftTempalates.com</li>
-                    </ul>
-                </div>
             </div>
-
             <div class="footer-bottom">
-                <p>&copy; 2025 GCraft. All Rights Reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+                <p>© 2025 GCraft. All Rights Reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
             </div>
         </div>
     </footer>
 
-
+    <div id="previewModal" class="modal-container">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close-btn">×</button>
+            <div class="modal-loader">Yükleniyor...</div>
+            <iframe src="" frameborder="0"></iframe>
+        </div>
+    </div>
 
     <!-- JavaScript -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Mobile Menu Toggle
-            const menuBtn = document.getElementById('menuBtn');
-            const navLinks = document.getElementById('navLinks');
-
-            menuBtn.addEventListener('click', function() {
-                navLinks.classList.toggle('active');
-                menuBtn.innerHTML = navLinks.classList.contains('active') ? 
-                    '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
-            });
-
-            // Close mobile menu when clicking a link
-            document.querySelectorAll('.nav-links a').forEach(link => {
-                link.addEventListener('click', function() {
-                    navLinks.classList.remove('active');
-                    menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-                });
-            });
-
-            // Header scroll effect
-            const header = document.getElementById('header');
-            window.addEventListener('scroll', function() {
-                if (window.scrollY > 100) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                }
-            });
-
-
-
-            // Smooth scrolling for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
-                    
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 80,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-
-            // Testimonial slider
-            const testimonials = document.querySelectorAll('.testimonial');
-            const dots = document.querySelectorAll('.slider-dot');
-            let currentSlide = 0;
-
-            function showSlide(index) {
-                testimonials.forEach(testimonial => testimonial.classList.remove('active'));
-                dots.forEach(dot => dot.classList.remove('active'));
-                
-                testimonials[index].classList.add('active');
-                dots[index].classList.add('active');
-                currentSlide = index;
+    document.addEventListener('DOMContentLoaded', function() {
+        const header = document.getElementById('header');
+        
+        // === YENİ VƏ TƏKMİLLƏŞDİRİLMİŞ ÖNİZLƏMƏ MƏNTİQİ ===
+        let previewObserver;
+        
+        /**
+         * Bu funksiya hover/long-press əvəzinə IntersectionObserver istifadə edir.
+         * Şablon kartı ekranda göründükdə iframe-i avtomatik yükləyir və animasiyanı başladır.
+         */
+        function setupDynamicPreviews() {
+            // Əgər köhnə observer varsa, onu dayandır
+            if (previewObserver) {
+                previewObserver.disconnect();
             }
 
-            dots.forEach(dot => {
-                dot.addEventListener('click', function() {
-                    const slideIndex = parseInt(this.getAttribute('data-slide'));
-                    showSlide(slideIndex);
-                });
-            });
-
-            // Auto slide change
-            setInterval(() => {
-                let nextSlide = (currentSlide + 1) % testimonials.length;
-                showSlide(nextSlide);
-            }, 5000);
-
-            // Template category filtering
-            const filterButtons = document.querySelectorAll('.filter-btn');
-            const templateCards = document.querySelectorAll('.template-card');
-            const categoryLinks = document.querySelectorAll('.footer-col ul li a[data-category]');
-
-            function filterTemplates(category) {
-                templateCards.forEach(card => {
-                    if (category === 'all' || card.getAttribute('data-categories').includes(category)) {
-                        card.style.display = 'block';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-
-                // Update active button
-                filterButtons.forEach(btn => {
-                    if (btn.getAttribute('data-category') === category) {
-                        btn.classList.add('active');
-                    } else {
-                        btn.classList.remove('active');
-                    }
-                });
-            }
-
-            // Filter button click event
-            filterButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const category = this.getAttribute('data-category');
-                    filterTemplates(category);
-                });
-            });
-
-            // Category links in footer
-            categoryLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const category = this.getAttribute('data-category');
-                    filterTemplates(category);
-                    
-                    // Scroll to templates section
-                    const templatesSection = document.getElementById('templates');
-                    window.scrollTo({
-                        top: templatesSection.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                });
-            });
-
-            // Animation on scroll
-            const animateOnScroll = function() {
-                const elements = document.querySelectorAll('.feature-card, .template-card, .section-title');
-                
-                elements.forEach(element => {
-                    const elementPosition = element.getBoundingClientRect().top;
-                    const screenPosition = window.innerHeight / 1.2;
-                    
-                    if (elementPosition < screenPosition) {
-                        element.style.opacity = '1';
-                        element.style.transform = 'translateY(0)';
-                    }
-                });
+            const options = {
+                root: null, // viewport
+                rootMargin: '0px',
+                threshold: 0.1 // Kartın 10%-i göründükdə işə düşsün
             };
 
-            // Set initial state for animated elements
-            document.querySelectorAll('.feature-card, .template-card, .section-title').forEach(el => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(20px)';
-                el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            previewObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const card = entry.target;
+                        loadAndAnimateIframe(card);
+                        // Yükləndikdən sonra bu kartı izləməyi dayandır (performans üçün)
+                        observer.unobserve(card);
+                    }
+                });
+            }, options);
+
+            // Bütün şablon kartlarını (həm orijinal, həm də mobil slayderdən olanları) izlə
+            document.querySelectorAll('.original-grid .template-card, .slider-item .template-card').forEach(card => {
+                previewObserver.observe(card);
+            });
+        }
+        
+        /**
+         * Verilmiş kart üçün iframe-i yükləyir və avtomatik scroll animasiyasını başladır.
+         */
+        function loadAndAnimateIframe(card) {
+            // Əgər iframe artıq yüklənibsə, heç nə etmə
+            if (card.dataset.iframeLoaded === 'true') return;
+
+            card.dataset.iframeLoaded = 'true'; // Yükləndiyini qeyd et
+
+            const imageContainer = card.querySelector('.template-img');
+            const previewButton = card.querySelector('.btn-primary');
+            if (!imageContainer || !previewButton) return;
+
+            const previewUrl = previewButton.getAttribute('href');
+            if (!previewUrl || previewUrl.startsWith('http')) return;
+
+            const iframe = document.createElement('iframe');
+            iframe.setAttribute('src', previewUrl);
+            iframe.setAttribute('scrolling', 'no');
+            
+            // Köhnə scroll intervalını təmizlə (əgər varsa)
+            if (card.scrollInterval) clearInterval(card.scrollInterval);
+
+            iframe.onload = () => {
+                iframe.classList.add('loaded'); // Yükləndikdə fade-in effekti üçün
+                try {
+                    const iFrameDoc = iframe.contentWindow.document;
+                    const maxScroll = iFrameDoc.body.scrollHeight - iframe.clientHeight;
+                    
+                    if (maxScroll <= 0) return; // Scroll lazım deyilsə
+
+                    let currentScroll = 0;
+                    const scrollSpeed = 25; // Saniyədəki piksel sayı
+
+                    card.scrollInterval = setInterval(() => {
+                        currentScroll += scrollSpeed / 60; // 60 FPS üçün uyğunlaşdırılıb
+                        if (currentScroll >= maxScroll) {
+                            currentScroll = 0; // Sona çatanda başa qayıt
+                        }
+                        iframe.contentWindow.scrollTo(0, currentScroll);
+                    }, 1000 / 60);
+
+                } catch (e) {
+                    console.error("Iframe content-ə daxil olmaq mümkün olmadı (CORS policy).", e);
+                    if(card.scrollInterval) clearInterval(card.scrollInterval);
+                }
+            };
+            
+            imageContainer.appendChild(iframe);
+        }
+
+        // === QALAN BÜTÜN KOD ƏVVƏLKİ KİMİ QALIR ===
+
+        function setHeaderHeight() {
+            if (header) {
+                const headerHeight = header.offsetHeight;
+                document.documentElement.style.setProperty('--header-height', `${headerHeight}px`);
+            }
+        }
+        setHeaderHeight();
+        window.addEventListener('resize', setHeaderHeight);
+
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const navLinks = document.getElementById('navLinks');
+
+        menuBtn.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            menuBtn.innerHTML = navLinks.classList.contains('active') ?
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            header.classList.toggle('scrolled', window.scrollY > 100);
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#' || targetId.startsWith('#&')) return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    e.preventDefault();
+                    const headerHeight = header.offsetHeight || 80;
+                    window.scrollTo({
+                        top: targetElement.offsetTop - headerHeight,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Testimonials Slider
+        (function setupTestimonialSlider() {
+            const testimonials = document.querySelectorAll('.testimonial');
+            const dots = document.querySelectorAll('.slider-controls .slider-dot');
+            const sliderContainer = document.querySelector('.testimonials-slider');
+            if (!testimonials.length || !sliderContainer) return;
+
+            let currentSlide = 0;
+            let touchStartX = 0;
+            let autoSlideInterval;
+
+            function showSlide(index) {
+                currentSlide = (index + testimonials.length) % testimonials.length;
+                testimonials.forEach(t => t.classList.remove('active'));
+                dots.forEach(d => d.classList.remove('active'));
+                testimonials[currentSlide].classList.add('active');
+                dots[currentSlide].classList.add('active');
+            }
+
+            function nextSlide() { showSlide(currentSlide + 1); }
+            const startAutoSlider = () => {
+                clearInterval(autoSlideInterval);
+                autoSlideInterval = setInterval(nextSlide, 5000);
+            };
+
+            dots.forEach(dot => {
+                dot.addEventListener('click', () => {
+                    showSlide(parseInt(dot.dataset.slide));
+                    startAutoSlider();
+                });
             });
 
-            window.addEventListener('scroll', animateOnScroll);
-            animateOnScroll(); // Run once on load
+            sliderContainer.addEventListener('touchstart', e => {
+                touchStartX = e.changedTouches[0].screenX;
+                clearInterval(autoSlideInterval);
+            });
+            sliderContainer.addEventListener('touchend', e => {
+                const touchEndX = e.changedTouches[0].screenX;
+                if (touchEndX < touchStartX - 50) showSlide(currentSlide + 1);
+                if (touchEndX > touchStartX + 50) showSlide(currentSlide - 1);
+                startAutoSlider();
+            });
+
+            showSlide(0);
+            startAutoSlider();
+        })();
+
+        // IMPROVED MOBILE SLIDER FUNCTIONALITY
+        const sliderInstances = {};
+
+        function setupMobileSlider(gridSelector) {
+            const grid = document.querySelector(gridSelector);
+            if (!grid || sliderInstances[gridSelector]) return;
+
+            const section = grid.closest('.section');
+            if (!section) return;
+
+            section.classList.add('mobile-slider-enabled');
+
+            let sliderContainer = section.querySelector('.mobile-slider-container');
+            if (sliderContainer) sliderContainer.remove();
+
+            sliderContainer = document.createElement('div');
+            sliderContainer.className = 'mobile-slider-container';
+
+            const sliderWrapper = document.createElement('div');
+            sliderWrapper.className = 'slider-wrapper';
+
+            const visibleItems = Array.from(grid.children).filter(child => child.style.display !== 'none');
+            if (visibleItems.length <= 1) {
+                section.classList.remove('mobile-slider-enabled');
+                if (sliderInstances[gridSelector]) {
+                    sliderInstances[gridSelector].destroy();
+                }
+                return;
+            }
+
+            visibleItems.forEach(item => {
+                const slide = document.createElement('div');
+                slide.className = 'slider-item';
+                slide.appendChild(item.cloneNode(true));
+                sliderWrapper.appendChild(slide);
+            });
+            sliderContainer.appendChild(sliderWrapper);
+            section.appendChild(sliderContainer);
+
+            let controlsContainer = section.querySelector('.mobile-slider-controls');
+            if (controlsContainer) controlsContainer.remove();
+            controlsContainer = document.createElement('div');
+            controlsContainer.className = 'mobile-slider-controls';
+
+            const prevButton = document.createElement('button');
+            prevButton.className = 'slider-arrow prev';
+            prevButton.innerHTML = '<i class="fas fa-chevron-left"></i>';
+
+            const pointsWrapper = document.createElement('div');
+            pointsWrapper.className = 'slider-points';
+
+            const nextButton = document.createElement('button');
+            nextButton.className = 'slider-arrow next';
+            nextButton.innerHTML = '<i class="fas fa-chevron-right"></i>';
+
+            controlsContainer.appendChild(prevButton);
+            controlsContainer.appendChild(pointsWrapper);
+            controlsContainer.appendChild(nextButton);
+            sliderContainer.appendChild(controlsContainer);
+
+            const items = Array.from(sliderWrapper.children);
+            const totalItems = items.length;
+            let currentIndex = 0;
+
+            items.forEach((_, i) => {
+                const point = document.createElement('div');
+                point.className = 'slider-point';
+                point.dataset.index = i;
+                pointsWrapper.appendChild(point);
+            });
+            const points = Array.from(pointsWrapper.children);
+
+            function goToSlide(index) {
+                if (index < 0 || index >= totalItems) return;
+                const targetItem = items[index];
+                const newScrollLeft = targetItem.offsetLeft - (sliderWrapper.offsetWidth - targetItem.offsetWidth) / 2;
+                sliderWrapper.scrollTo({ left: newScrollLeft, behavior: 'smooth' });
+            }
+
+            function updateControls(index) {
+                currentIndex = index;
+                points.forEach((p, i) => p.classList.toggle('active', i === index));
+                items.forEach((item, i) => item.classList.toggle('is-active', i === index));
+                prevButton.classList.toggle('disabled', index === 0);
+                nextButton.classList.toggle('disabled', index === totalItems - 1);
+            }
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && entry.intersectionRatio >= 0.75) {
+                        const index = items.indexOf(entry.target);
+                        if (index !== -1) updateControls(index);
+                    }
+                });
+            }, { root: sliderWrapper, threshold: 0.75 });
+
+            items.forEach(item => observer.observe(item));
+
+            prevButton.addEventListener('click', () => goToSlide(currentIndex - 1));
+            nextButton.addEventListener('click', () => goToSlide(currentIndex + 1));
+            points.forEach(point => point.addEventListener('click', () => goToSlide(parseInt(point.dataset.index))));
+
+            sliderInstances[gridSelector] = {
+                destroy: () => {
+                    observer.disconnect();
+                    section.classList.remove('mobile-slider-enabled');
+                    if (sliderContainer) sliderContainer.remove();
+                    delete sliderInstances[gridSelector];
+                }
+            };
+            
+            // Mobil slider yaradılandan sonra dinamik önizləmələri yenidən qur
+            setupDynamicPreviews();
+        }
+
+        function destroyMobileSlider(gridSelector) {
+            if (sliderInstances[gridSelector]) {
+                sliderInstances[gridSelector].destroy();
+            }
+        }
+
+        // Responsive Handler
+        const mobileMediaQuery = window.matchMedia('(max-width: 768px)');
+        const gridsToConvert = ['.templates-grid', '.features-grid'];
+
+        function handleResponsiveChange(e) {
+            if (e.matches) {
+                gridsToConvert.forEach(selector => setupMobileSlider(selector));
+            } else {
+                gridsToConvert.forEach(selector => destroyMobileSlider(selector));
+            }
+            // Ekran ölçüsü dəyişdikdə önizləmələri yenidən qur
+            setupDynamicPreviews();
+        }
+
+        handleResponsiveChange(mobileMediaQuery);
+        mobileMediaQuery.addEventListener('change', handleResponsiveChange);
+
+        // Template category filtering
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const templateCards = document.querySelectorAll('.templates-grid .template-card');
+
+        function filterTemplates(category) {
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`.filter-btn[data-category="${category}"]`).classList.add('active');
+
+            templateCards.forEach(card => {
+                const isVisible = category === 'all' || card.dataset.categories.includes(category);
+                card.style.display = isVisible ? 'block' : 'none';
+            });
+
+            if (mobileMediaQuery.matches) {
+                destroyMobileSlider('.templates-grid');
+                setupMobileSlider('.templates-grid');
+            } else {
+                // Filterləmədən sonra görünən kartlar üçün önizləmələri yenidən başlat
+                setupDynamicPreviews();
+            }
+        }
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => filterTemplates(button.dataset.category));
         });
+
+        // Footer links for filtering
+        document.querySelectorAll('.footer-col a[data-category]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const category = this.dataset.category;
+                filterTemplates(category);
+                const templatesSection = document.getElementById('templates');
+                const headerHeight = header.offsetHeight || 80;
+                window.scrollTo({
+                    top: templatesSection.offsetTop - headerHeight,
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Səhifə yüklənəndə ilkin önizləmələri qur
+        setupDynamicPreviews();
+    });
+
+    // === MODAL POPUP FUNCTIONALITY ===
+    const modal = document.getElementById('previewModal');
+    if (modal) {
+        const modalOverlay = modal.querySelector('.modal-overlay');
+        const modalCloseBtn = modal.querySelector('.modal-close-btn');
+        const modalIframe = modal.querySelector('iframe');
+        const modalLoader = modal.querySelector('.modal-loader');
+    
+        const openModal = (url) => {
+            modalLoader.style.display = 'block';
+            modalIframe.style.opacity = '0';
+            modalIframe.src = url;
+            document.body.classList.add('modal-open');
+            modal.classList.add('visible');
+        };
+    
+        const closeModal = () => {
+            document.body.classList.remove('modal-open');
+            modal.classList.remove('visible');
+            setTimeout(() => {
+                modalIframe.src = ''; 
+            }, 300);
+        };
+    
+        modalIframe.addEventListener('load', () => {
+            modalLoader.style.display = 'none';
+            modalIframe.style.opacity = '1';
+        });
+
+        // Sadələşdirilmiş klik məntiqi
+        document.addEventListener('click', function(e) {
+            const previewButton = e.target.closest('.template-card .btn-primary');
+    
+            if (previewButton) {
+                const url = previewButton.getAttribute('href');
+                if (url && !url.startsWith('http')) {
+                    e.preventDefault(); 
+                    openModal(url);
+                }
+            }
+        });
+    
+        modalCloseBtn.addEventListener('click', closeModal);
+        modalOverlay.addEventListener('click', closeModal);
+    
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('visible')) {
+                closeModal();
+            }
+        });
+    }
     </script>
 </body>
 </html>

@@ -1435,7 +1435,7 @@ img {
     .nav-menu {
         position: fixed;
         top: 70px;
-        left: -100%;
+        right: -100%;
         width: 100%;
         flex-direction: column;
         background-color: var(--white);
@@ -1445,7 +1445,7 @@ img {
     }
 
     .nav-menu.active {
-        left: 0;
+        right: 0;
     }
 
     .nav-item {
