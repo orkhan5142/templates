@@ -348,25 +348,22 @@
             height: 200px;
             overflow: hidden;
             position: relative;
-            background-color: #000; /* iframe yüklənənə qədər arxa fon */
+            background-color: #000;
         }
 
-        .template-img iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
+        /* NEW STYLES for the screenshot image */
+        .template-img img {
             width: 100%;
             height: 100%;
-            border: none;
-            opacity: 0; /* Başlanğıcda görünməz */
-            transition: opacity 0.6s ease; /* Zərif keçid effekti */
-            pointer-events: none; /* Kliklərin arxadakı elementlərə ötürülməsi üçün */
-        }
-        
-        .template-img iframe.loaded {
-            opacity: 1; /* Yükləndikdə görünən olur */
+            object-fit: cover;
+            object-position: top center;
+            transition: transform 0.4s ease;
         }
 
+        .template-card:hover .template-img img {
+            transform: scale(1.05);
+        }
+        
         .template-badge {
             position: absolute;
             top: 10px;
@@ -377,7 +374,7 @@
             border-radius: 50px;
             font-size: 0.8rem;
             font-weight: 600;
-            z-index: 5; /* iframe-in üstündə qalması üçün */
+            z-index: 5; 
         }
 
         .template-info {
@@ -1096,7 +1093,7 @@
                 <!-- Template 1 - QuantumLeap Tech -->
                 <div class="template-card" data-categories="agency corporate">
                     <div class="template-img">
-                        <!-- Şəkil ləğv edildi, iframe JS ilə əlavə olunacaq -->
+                       <img src="assets/screenshots/s_1.jpg" alt="QuantumLeap Tech Template Screenshot">
                         <span class="template-badge">Popular</span>
                     </div>
                     <div class="template-info">
@@ -1117,6 +1114,7 @@
                 <!-- Template 2 - GrowthMatrix Agency -->
                 <div class="template-card" data-categories="agency corporate">
                     <div class="template-img">
+                        <img src="assets/screenshots/s_5.jpg" alt="GrowthMatrix Agency Template Screenshot">
                         <span class="template-badge">Popular</span>
                     </div>
                     <div class="template-info">
@@ -1137,6 +1135,7 @@
                 <!-- Template 3 - Web3 Vanguard -->
                 <div class="template-card" data-categories="agency corporate">
                     <div class="template-img">
+                        <img src="assets/screenshots/s_3.jpg" alt="Web3 Vanguard Template Screenshot">
                         <span class="template-badge">New</span>
                     </div>
                     <div class="template-info">
@@ -1157,6 +1156,7 @@
                 <!-- Template 4 - Innovatech Hub -->
                 <div class="template-card" data-categories="agency corporate">
                     <div class="template-img">
+                        <img src="assets/screenshots/s_2.jpg" alt="Innovatech Hub Template Screenshot">
                         <span class="template-badge">New</span>
                     </div>
                     <div class="template-info">
@@ -1177,6 +1177,7 @@
                 <!-- Template 5 - Elysian Digital -->
                 <div class="template-card" data-categories="agency corporate">
                     <div class="template-img">
+                        <img src="assets/screenshots/s_4.jpg" alt="Elysian Digital Template Screenshot">
                         <span class="template-badge">New</span>
                     </div>
                     <div class="template-info">
@@ -1197,6 +1198,7 @@
                 <!-- Template 6 - The Digital Architect -->
                 <div class="template-card" data-categories="portfolio">
                     <div class="template-img">
+                        <img src="assets/screenshots/s_9.jpg" alt="Alex Taylor Portfolio Screenshot">
                         <span class="template-badge">New</span>
                     </div>
                     <div class="template-info">
@@ -1216,6 +1218,7 @@
                 <!-- Template 7 - CodeCrafter's Canvas -->
                 <div class="template-card" data-categories="portfolio">
                     <div class="template-img">
+                        <img src="assets/screenshots/s_10.jpg" alt="Liam.dev Portfolio Screenshot">
                         <span class="template-badge">New</span>
                     </div>
                     <div class="template-info">
@@ -1235,6 +1238,7 @@
                 <!-- Template 8 - Synapse AI -->
                 <div class="template-card" data-categories="ChatBot">
                     <div class="template-img">
+                        <img src="assets/screenshots/s_6.jpg" alt="ChatBot Dark Template Screenshot">
                         <span class="template-badge">Popular</span>
                     </div>
                     <div class="template-info">
@@ -1254,6 +1258,7 @@
                 <!-- Template 9 - Aura Assistant -->
                 <div class="template-card" data-categories="ChatBot">
                     <div class="template-img">
+                        <img src="assets/screenshots/s_7.jpg" alt="ChatBot Lite Template Screenshot">
                         <span class="template-badge">Popular</span>
                     </div>
                     <div class="template-info">
@@ -1273,6 +1278,7 @@
                 <!-- Template 10 - Quantum Converse -->
                 <div class="template-card" data-categories="ChatBot">
                     <div class="template-img">
+                        <img src="assets/screenshots/s_8.jpg" alt="ChatBot Motion Template Screenshot">
                         <span class="template-badge">Popular</span>
                     </div>
                     <div class="template-info">
@@ -1440,95 +1446,6 @@
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         const header = document.getElementById('header');
-        
-        // === YENİ VƏ TƏKMİLLƏŞDİRİLMİŞ ÖNİZLƏMƏ MƏNTİQİ ===
-        let previewObserver;
-        
-        /**
-         * Bu funksiya hover/long-press əvəzinə IntersectionObserver istifadə edir.
-         * Şablon kartı ekranda göründükdə iframe-i avtomatik yükləyir və animasiyanı başladır.
-         */
-        function setupDynamicPreviews() {
-            // Əgər köhnə observer varsa, onu dayandır
-            if (previewObserver) {
-                previewObserver.disconnect();
-            }
-
-            const options = {
-                root: null, // viewport
-                rootMargin: '0px',
-                threshold: 0.1 // Kartın 10%-i göründükdə işə düşsün
-            };
-
-            previewObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const card = entry.target;
-                        loadAndAnimateIframe(card);
-                        // Yükləndikdən sonra bu kartı izləməyi dayandır (performans üçün)
-                        observer.unobserve(card);
-                    }
-                });
-            }, options);
-
-            // Bütün şablon kartlarını (həm orijinal, həm də mobil slayderdən olanları) izlə
-            document.querySelectorAll('.original-grid .template-card, .slider-item .template-card').forEach(card => {
-                previewObserver.observe(card);
-            });
-        }
-        
-        /**
-         * Verilmiş kart üçün iframe-i yükləyir və avtomatik scroll animasiyasını başladır.
-         */
-        function loadAndAnimateIframe(card) {
-            // Əgər iframe artıq yüklənibsə, heç nə etmə
-            if (card.dataset.iframeLoaded === 'true') return;
-
-            card.dataset.iframeLoaded = 'true'; // Yükləndiyini qeyd et
-
-            const imageContainer = card.querySelector('.template-img');
-            const previewButton = card.querySelector('.btn-primary');
-            if (!imageContainer || !previewButton) return;
-
-            const previewUrl = previewButton.getAttribute('href');
-            if (!previewUrl || previewUrl.startsWith('http')) return;
-
-            const iframe = document.createElement('iframe');
-            iframe.setAttribute('src', previewUrl);
-            iframe.setAttribute('scrolling', 'no');
-            
-            // Köhnə scroll intervalını təmizlə (əgər varsa)
-            if (card.scrollInterval) clearInterval(card.scrollInterval);
-
-            iframe.onload = () => {
-                iframe.classList.add('loaded'); // Yükləndikdə fade-in effekti üçün
-                try {
-                    const iFrameDoc = iframe.contentWindow.document;
-                    const maxScroll = iFrameDoc.body.scrollHeight - iframe.clientHeight;
-                    
-                    if (maxScroll <= 0) return; // Scroll lazım deyilsə
-
-                    let currentScroll = 0;
-                    const scrollSpeed = 25; // Saniyədəki piksel sayı
-
-                    card.scrollInterval = setInterval(() => {
-                        currentScroll += scrollSpeed / 60; // 60 FPS üçün uyğunlaşdırılıb
-                        if (currentScroll >= maxScroll) {
-                            currentScroll = 0; // Sona çatanda başa qayıt
-                        }
-                        iframe.contentWindow.scrollTo(0, currentScroll);
-                    }, 1000 / 60);
-
-                } catch (e) {
-                    console.error("Iframe content-ə daxil olmaq mümkün olmadı (CORS policy).", e);
-                    if(card.scrollInterval) clearInterval(card.scrollInterval);
-                }
-            };
-            
-            imageContainer.appendChild(iframe);
-        }
-
-        // === QALAN BÜTÜN KOD ƏVVƏLKİ KİMİ QALIR ===
 
         function setHeaderHeight() {
             if (header) {
@@ -1738,9 +1655,6 @@
                     delete sliderInstances[gridSelector];
                 }
             };
-            
-            // Mobil slider yaradılandan sonra dinamik önizləmələri yenidən qur
-            setupDynamicPreviews();
         }
 
         function destroyMobileSlider(gridSelector) {
@@ -1759,8 +1673,6 @@
             } else {
                 gridsToConvert.forEach(selector => destroyMobileSlider(selector));
             }
-            // Ekran ölçüsü dəyişdikdə önizləmələri yenidən qur
-            setupDynamicPreviews();
         }
 
         handleResponsiveChange(mobileMediaQuery);
@@ -1782,9 +1694,6 @@
             if (mobileMediaQuery.matches) {
                 destroyMobileSlider('.templates-grid');
                 setupMobileSlider('.templates-grid');
-            } else {
-                // Filterləmədən sonra görünən kartlar üçün önizləmələri yenidən başlat
-                setupDynamicPreviews();
             }
         }
 
@@ -1807,8 +1716,6 @@
             });
         });
         
-        // Səhifə yüklənəndə ilkin önizləmələri qur
-        setupDynamicPreviews();
     });
 
     // === MODAL POPUP FUNCTIONALITY ===
@@ -1840,7 +1747,6 @@
             modalIframe.style.opacity = '1';
         });
 
-        // Sadələşdirilmiş klik məntiqi
         document.addEventListener('click', function(e) {
             const previewButton = e.target.closest('.template-card .btn-primary');
     
