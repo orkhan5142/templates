@@ -56,7 +56,102 @@
             margin: 0 auto;
             padding: 0 15px;
         }
+        /* Import Poppins Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
 
+/* Style for by-gcraft section */
+.by-gcraft {
+    display: flex;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    color: var(--dark);
+    /* EDITED: Added margin-bottom for spacing in the new layout */
+    margin-bottom: -1 rem;
+}
+
+.by-text {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #ccc;
+    text-transform: lowercase;
+    letter-spacing: 0.05rem;
+}
+
+.gcraft-logo {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    transition: var(--transition);
+    margin-right: -0.2rem; /* Space between logo and name */
+}
+
+
+.gcraft-name {
+    font-size: 1.2rem;
+    font-weight: 520;
+    color: #ffffff;
+    letter-spacing: 0.02rem;
+    margin-top: 0.2rem;
+}
+
+/* EDITED: Navbar layout updated for new two-row header */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.25rem 0; /* Reduced padding */
+    width: 100%;
+    margin-top: -0.8rem; /* Adjusted margin for new layout */
+}
+
+/* Ensure logo and by-gcraft align nicely */
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: white;
+    display: flex;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    
+    .by-text {
+        font-size: 0.9rem;
+    }
+
+    .gcraft-logo {
+        width: 25px;
+        height: 25px;
+    }
+
+    .gcraft-name {
+        font-size: 1rem;
+    }
+
+    .logo {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    
+    .by-text {
+        font-size: 0.8rem;
+    }
+
+    .gcraft-logo {
+        
+        height: 30px;
+    }
+
+    .gcraft-name {
+
+        margin-top: 0.25rem;
+        font-size: 0.9rem;
+    }
+}
         /* Header Styles */
         header {
             background-color: black;
@@ -67,26 +162,13 @@
             z-index: 1000;
             transition: var(--transition);
             border-bottom: 1px solid #333;
+            /* EDITED: Adjusted padding for a more compact header */
+            padding-top: 0.5rem;
         }
 
         header.scrolled {
             background-color: rgba(0, 0, 0, 0.95);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: white;
-            display: flex;
-            align-items: center;
         }
 
         .logo i {
@@ -97,6 +179,7 @@
         .nav-links {
             display: flex;
             gap: 2rem;
+            /* EDITED: margin-left: auto is no longer needed */
         }
 
         .nav-links a {
@@ -136,40 +219,26 @@
 
         /* Hero Section */
         .hero {
-            height: 100vh;
+            min-height: 100vh; /* Changed from height to min-height for better flexibility */
             display: flex;
             align-items: center;
             background: black;
-            margin-top: 80px;
+            /* EDITED: Using CSS variable for dynamic margin based on header height */
+            margin-top: var(--header-height, 80px);
         }
 
         .hero-content {
             display: flex;
             align-items: center;
             gap: 3rem;
+            width: 100%;
         }
 
         .hero-text {
+            
             flex: 1;
         }
-
-        .hero-image {
-            flex: 1;
-            position: relative;
-        }
-
-        .hero-image img {
-            border-radius: 10px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-            transform: perspective(1000px) rotateY(-10deg);
-            transition: var(--transition);
-            border: 1px solid #333;
-        }
-
-        .hero-image:hover img {
-            transform: perspective(1000px) rotateY(0deg);
-        }
-
+        
         .hero h1 {
             font-size: 3.5rem;
             margin-bottom: 1.5rem;
@@ -219,6 +288,158 @@
             box-shadow: 0 10px 20px rgba(1, 210, 109, 0.5);
         }
 
+        /* ================================================= */
+        /* == NEW HERO VISUAL STYLES (TRANSPLANTED) == */
+        /* ================================================= */
+        .hero-visual {
+            position: relative;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+        }
+        
+
+        .template-showcase {
+            position: relative;
+            width: 100%;
+            max-width: 480px;
+            height: 400px;
+        }
+
+        .hero-visual .template-card {
+            position: absolute;
+            width: 280px;
+            height: 200px;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        .hero-visual .template-card:nth-child(1) {
+            top: 0;
+            left: 0;
+            z-index: 3;
+            transform: scale(1) rotate(0deg);
+            animation: cardFloat1 6s ease-in-out infinite;
+        }
+
+        .hero-visual .template-card:nth-child(2) {
+            top: 50px;
+            right: 0;
+            z-index: 2;
+            transform: scale(0.9) rotate(3deg);
+            animation: cardFloat2 6s ease-in-out infinite 2s;
+        }
+
+        .hero-visual .template-card:nth-child(3) {
+            bottom: 0;
+            left: 50px;
+            z-index: 1;
+            transform: scale(0.8) rotate(-2deg);
+            animation: cardFloat3 6s ease-in-out infinite 4s;
+        }
+
+        .hero-visual .template-card:hover {
+            transform: scale(1.1) rotate(0deg) !important;
+            z-index: 10 !important;
+            box-shadow: 0 20px 60px rgba(1, 210, 109, 0.2);
+        }
+
+        .template-header {
+            height: 30px;
+            background: #121212;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            padding: 0 1rem;
+            gap: 0.5rem;
+        }
+
+        .template-dot { width: 8px; height: 8px; border-radius: 50%; }
+        .template-dot.red { background: #ff5f56; }
+        .template-dot.yellow { background: #ffbd2e; }
+        .template-dot.green { background: #27ca3f; }
+
+        .template-content {
+            padding: 1rem;
+            height: calc(100% - 30px);
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .template-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .template-preview {
+            flex: 1;
+            background: linear-gradient(135deg, #121212 0%, rgba(1, 210, 109, 0.05) 100%);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .template-preview::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 30%, rgba(1, 210, 109, 0.1) 50%, transparent 70%);
+            animation: previewShimmer 3s infinite;
+        }
+
+        .template-icon {
+            font-size: 2rem;
+            color: var(--primary);
+            z-index: 1;
+        }
+
+        .template-tag {
+            font-size: 0.75rem;
+            color: #ccc;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            align-self: flex-start;
+        }
+
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .floating-icon {
+            position: absolute;
+            font-size: 1.5rem;
+            color: var(--primary);
+            opacity: 0.3;
+            animation: floatIcon 8s ease-in-out infinite;
+        }
+
+        .floating-icon:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+        .floating-icon:nth-child(2) { top: 30%; right: 15%; animation-delay: 2s; }
+        .floating-icon:nth-child(3) { bottom: 20%; left: 20%; animation-delay: 4s; }
+        .floating-icon:nth-child(4) { bottom: 40%; right: 10%; animation-delay: 6s; }
+        
         /* Category Badges */
         .category-badge {
             display: inline-block;
@@ -775,15 +996,52 @@
             transform: scale(1.4);
         }
 
+        /* Animations for new hero visual */
+        @keyframes cardFloat1 {
+            0%, 100% { transform: scale(1) rotate(0deg) translateY(0px); }
+            50% { transform: scale(1.05) rotate(1deg) translateY(-10px); }
+        }
+
+        @keyframes cardFloat2 {
+            0%, 100% { transform: scale(0.9) rotate(3deg) translateY(0px); }
+            50% { transform: scale(0.95) rotate(4deg) translateY(-15px); }
+        }
+
+        @keyframes cardFloat3 {
+            0%, 100% { transform: scale(0.8) rotate(-2deg) translateY(0px); }
+            50% { transform: scale(0.85) rotate(-1deg) translateY(-8px); }
+        }
+        @keyframes previewShimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        @keyframes floatIcon {
+            0%, 100% { 
+                transform: translateY(0px) rotate(0deg);
+                opacity: 0.2;
+            }
+            50% { 
+                transform: translateY(-20px) rotate(180deg);
+                opacity: 0.6;
+            }
+        }
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+
         /* Mobile Styles */
+                /* Mobile Styles */
         @media (max-width: 992px) {
+            .hero {
+                min-height: 60vh; /* Kiçik ekranlar üçün nizamlandı */
+            }
             .hero-content {
                 flex-direction: column;
                 text-align: center;
+                gap: 1rem;
             }
-
-            .hero-text {
-                margin-bottom: 3rem;
+            .hero-visual {
+                display: none; /* Bütün mobil ekranlarda vizual hissəni gizlət */
             }
 
             .hero h1 {
@@ -796,15 +1054,27 @@
             }
         }
 
-        @media (max-width: 768px) {
+                @media (max-width: 768px) {
+            .hero {
+                min-height: auto; /* DÜZƏLİŞ: Hündürlüyü məzmuna görə avtomatik təyin edir */
+                padding: 4rem 0; /* DÜZƏLİŞ: Sabit hündürlük əvəzinə daxili boşluq əlavə edildi */
+            }
+            .by-gcraft {
+                margin-bottom: 0; /* DÜZƏLİŞ: Mənfi margin silindi */
+            }
+            .navbar {
+                 padding-bottom: 0.5rem; /* DÜZƏLİŞ: Alt elementlə ara məsafəsi üçün boşluq */
+            }
             .logo {
                 font-size: 1.5rem;
             }
             .mobile-menu-btn {
                 display: block;
-                margin-top: auto;
             }
-
+            /* EDITED: On mobile, the logo area should be hidden when menu is open */
+            .nav-links.active ~ .logo-area {
+                display: none;
+            }
             .nav-links {
                 position: fixed;
                 top: var(--header-height, 60px);
@@ -827,17 +1097,21 @@
 
             .hero h1 {
                 font-size: 2.2rem;
+                line-height: 1.3; /* DÜZƏLİŞ: Başlıq sətirləri arasındakı məsafə azaldıldı */
+                margin-bottom: 1rem; /* DÜZƏLİŞ: Paragrafla arasındakı boşluq nizamlandı */
             }
 
             .hero p {
                 font-size: 1rem;
+                margin-bottom: 1.5rem; /* DÜZƏLİŞ: Düymələrlə arasındakı boşluq nizamlandı */
             }
-
+            
             .section {
                 padding: 3rem 0;
             }
 
             .section-title h2 {
+                margin-top: 0; /* DÜZƏLİŞ: Üst-üstə düşməyə səbəb olan mənfi margin ləğv edildi */
                 font-size: 2rem;
             }
 
@@ -881,7 +1155,11 @@
 
         @media (max-width: 576px) {
             .hero h1 {
-                font-size: 1.8rem;
+                font-size: 1.9rem; /* DÜZƏLİŞ: Ən kiçik ekranlar üçün bir az daha kiçildildi */
+            }
+            
+            .hero p {
+                font-size: 0.95rem; /* DÜZƏLİŞ: Oxunaqlılıq üçün bir az daha kiçildildi */
             }
 
             .hero-buttons {
@@ -909,29 +1187,6 @@
             .slider-wrapper::after {
                 flex: 0 0 7.5%;
             }
-        }
-
-        /* Animations */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
-        }
-
-        .floating {
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .delay-1 {
-            animation-delay: 0.2s;
-        }
-
-        .delay-2 {
-            animation-delay: 0.4s;
-        }
-
-        .delay-3 {
-            animation-delay: 0.6s;
         }
 
         /* =========================================== */
@@ -1029,45 +1284,114 @@
         body.modal-open {
             overflow: hidden;
         }
+/* Import Poppins Font (already included, ensuring consistency) */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+
+/* Style for by-gcraft section */
+/* This block is a duplicate, changes are reflected in the first CSS block */
+
+
+/* Import Poppins Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+
+/* EDITED: This entire block has been modified and consolidated with the first CSS block for clarity. */
+/* The styles for .by-gcraft, .gcraft-logo, .gcraft-name, and .navbar are now defined at the top. */
+/* This avoids duplication and ensures the correct styles are applied. */
 
 </style>
 </head>
 <body>
+    
     <!-- Header -->
     <header id="header">
-        <div class="container">
-            <nav class="navbar">
-                <a href="#" class="logo">
-                    <i class="fas fa-cubes"></i>
-                    <span>GCraftTemplates</span>
-                </a>
-                <ul class="nav-links" id="navLinks">
-                    <li><a href="#templates">Templates</a></li>
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#testimonials">Testimonials</a></li>
-                    <li><a href="https://gcraft.tech/discuss-project">Contact</a></li>
-                </ul>
-                <button class="mobile-menu-btn" id="menuBtn">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </nav>
+    <div class="container">
+        <!-- EDITED: HTML structure changed for new two-row layout -->
+         <a href="https://gcraft.tech">
+        <div class="by-gcraft">
+            <span class="by-text">by</span>
+            <img src="https://gcraft.tech/static/media/GCraft_icon-01.a41d81cd7980932c74b07424a205d168.svg" alt="GCraft Icon" class="gcraft-logo">
+            <span class="gcraft-name">GCraft</span>
         </div>
-    </header>
-
+        </a>
+        <nav class="navbar">
+            <a href="#" class="logo">
+                <i class="fas fa-cubes"></i>
+                <span>Templates</span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#templates">Templates</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="https://gcraft.tech/discuss-project">Contact</a></li>
+            </ul>
+            <button class="mobile-menu-btn" id="menuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </div>
+</header>
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
-                    <h1>Elegant, Responsive Website Templates</h1>
-                    <p>Discover our collection of professionally designed templates that will make your website stand out. Fully customizable and mobile-friendly.</p>
+                    <h1>Professional Web Templates for Businesses</h1>
+                    <p>GCraft’s landing pages are fast, clean, and built to convert. Easily customize them via the admin panel, with extra features or backend support available on request. Pick a template and start growing your leads today!</p>
                     <div class="hero-buttons">
-                        <a href="#templates" class="btn btn-primary">Browse Templates</a>
-                        <a href="https://gcraft.tech/" class="btn btn-outline">Learn More</a>
+                        <a href="#templates" class="btn btn-primary">View Templates</a>
+                        <a href="#" class="btn btn-outline">Contact Us</a>
                     </div>
                 </div>
-                <div class="hero-image floating">
-                    <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Website Template">
+                <div class="hero-visual">
+                    <div class="template-showcase">
+                        <div class="template-card">
+                            <div class="template-header">
+                                <div class="template-dot red"></div>
+                                <div class="template-dot yellow"></div>
+                                <div class="template-dot green"></div>
+                            </div>
+                            <div class="template-content">
+                                <div class="template-title">Business Pro</div>
+                                <div class="template-preview">
+                                    <i class="fas fa-briefcase template-icon"></i>
+                                </div>
+                                <div class="template-tag">Professional</div>
+                            </div>
+                        </div>
+                        
+                        <div class="template-card">
+                            <div class="template-header">
+                                <div class="template-dot red"></div>
+                                <div class="template-dot yellow"></div>
+                                <div class="template-dot green"></div>
+                            </div>
+                            <div class="template-content">
+                                <div class="template-title">Creative Studio</div>
+                                <div class="template-preview">
+                                    <i class="fas fa-paint-brush template-icon"></i>
+                                </div>
+                                <div class="template-tag">Creative</div>
+                            </div>
+                        </div>
+                        
+                        <div class="template-card">
+                            <div class="template-header">
+                                <div class="template-dot red"></div>
+                                <div class="template-dot yellow"></div>
+                                <div class="template-dot green"></div>  
+                            </div>
+                            <div class="template-content">
+                                <div class="template-title">Portfolio</div>
+                                <div class="template-preview">
+                                    <i class="fas fa-image template-icon"></i>
+                                </div>
+                                <div class="template-tag">Personal</div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    
+                    
                 </div>
             </div>
         </div>
@@ -1086,7 +1410,7 @@
                 <button class="filter-btn active" data-category="all">All Templates</button>
                 <button class="filter-btn" data-category="agency">Agency</button>
                 <button class="filter-btn" data-category="portfolio">Portfolio</button>
-                <button class="filter-btn" data-category="ChatBot">ChatBot</button>
+                <button class="filter-btn" data-category="chatbot">ChatBot</button>
             </div>
 
             <div class="templates-grid original-grid">
@@ -1391,6 +1715,7 @@
     </section>
 
     <!-- Footer -->
+    <!-- Footer -->
     <footer id="contact">
         <div class="container">
             <div class="footer-content">
@@ -1399,9 +1724,9 @@
                     <h3>GCraftTempalates</h3>
                     <p>Providing high-quality website templates since 2015. Our mission is to make web design accessible to everyone.</p>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.instagram.com/gcraft.tech/"><i class="fab fa-instagram"></i></a>
+                        <a href="https://linkedin.com/company/gcraft"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.facebook.com/people/GCraft/61574935347332/"><i class="fab fa-facebook-f"></i></a>
                     </div>
                 </div>
                 <!-- Footer Column 2 -->
@@ -1411,19 +1736,16 @@
                         <li><a href="#templates">Templates</a></li>
                         <li><a href="#features">Features</a></li>
                         <li><a href="#testimonials">Testimonials</a></li>
-                        <li><a href="#">Pricing</a></li>
-                        <li><a href="#">Blog</a></li>
+                        <li><a href="https://gcraft.tech/discuss-project">Contact</a></li>
                     </ul>
                 </div>
                 <!-- Footer Column 3 -->
                 <div class="footer-col">
                     <h3>Categories</h3>
                     <ul>
-                        <li><a href="#" data-category="agency">Agency Templates</a></li>
-                        <li><a href="#" data-category="portfolio">Portfolio Templates</a></li>
-                        <li><a href="#" data-category="ecommerce">E-commerce Templates</a></li>
-                        <li><a href="#" data-category="blog">Blog Templates</a></li>
-                        <li><a href="#" data-category="restaurant">Restaurant Templates</a></li>
+                        <li><a href="#agency" data-category="agency">Agency Templates</a></li>
+                        <li><a href="#portfolio" data-category="portfolio">Portfolio Templates</a></li>
+                        <li><a href="#chatbot" data-category="chatbot">ChatBot Templates</a></li>
                     </ul>
                 </div>
             </div>
