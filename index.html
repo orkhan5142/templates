@@ -235,8 +235,8 @@
         }
 
         .hero-text {
-            
-            flex: 1;
+            flex: 2; 
+            padding-right: 2rem; 
         }
         
         .hero h1 {
@@ -1033,7 +1033,7 @@
                 /* Mobile Styles */
         @media (max-width: 992px) {
             .hero {
-                min-height: 60vh; /* Kiçik ekranlar üçün nizamlandı */
+                min-height: 50vh; /* Kiçik ekranlar üçün nizamlandı */
             }
             .hero-content {
                 flex-direction: column;
@@ -1055,9 +1055,13 @@
         }
 
                 @media (max-width: 768px) {
+            .hero-text {
+                padding-right: 0; /* Düzəliş: Sağ tərəfdəki boşluğu sil */
+                text-align: center; /* Düzəliş: Mətni mərkəzləşdir */
+            }
             .hero {
                 min-height: auto; /* DÜZƏLİŞ: Hündürlüyü məzmuna görə avtomatik təyin edir */
-                padding: 4rem 0; /* DÜZƏLİŞ: Sabit hündürlük əvəzinə daxili boşluq əlavə edildi */
+                padding: 1rem 0; /* DÜZƏLİŞ: Sabit hündürlük əvəzinə daxili boşluq əlavə edildi */
             }
             .by-gcraft {
                 margin-bottom: 0; /* DÜZƏLİŞ: Mənfi margin silindi */
