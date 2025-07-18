@@ -88,7 +88,7 @@
 
 .gcraft-name {
     font-size: 1.2rem;
-    font-weight: 520;
+    font-weight: 550;
     color: #ffffff;
     letter-spacing: 0.02rem;
     margin-top: 0.2rem;
@@ -101,7 +101,7 @@
     align-items: center;
     padding: 0.25rem 0; /* Reduced padding */
     width: 100%;
-    margin-top: -0.8rem; /* Adjusted margin for new layout */
+    margin-bottom: -1rem; /* Adjusted margin for new layout */
 }
 
 /* Ensure logo and by-gcraft align nicely */
@@ -179,6 +179,7 @@
         .nav-links {
             display: flex;
             gap: 2rem;
+            margin-top: 1.2rem; /* Added margin to move links lower */
             /* EDITED: margin-left: auto is no longer needed */
         }
 
@@ -1311,13 +1312,7 @@
     <header id="header">
     <div class="container">
         <!-- EDITED: HTML structure changed for new two-row layout -->
-         <a href="https://gcraft.tech">
-        <div class="by-gcraft">
-            <span class="by-text">by</span>
-            <img src="https://gcraft.tech/static/media/GCraft_icon-01.a41d81cd7980932c74b07424a205d168.svg" alt="GCraft Icon" class="gcraft-logo">
-            <span class="gcraft-name">GCraft</span>
-        </div>
-        </a>
+         
         <nav class="navbar">
             <a href="#" class="logo">
                 <i class="fas fa-cubes"></i>
@@ -1333,6 +1328,13 @@
                 <i class="fas fa-bars"></i>
             </button>
         </nav>
+        <a href="https://gcraft.tech">
+        <div class="by-gcraft">
+            <span class="by-text">by</span>
+            <img src="https://gcraft.tech/static/media/GCraft_icon-01.a41d81cd7980932c74b07424a205d168.svg" alt="GCraft Icon" class="gcraft-logo">
+            <span class="gcraft-name">GCraft</span>
+        </div>
+        </a>
     </div>
 </header>
     <!-- Hero Section -->
@@ -1415,7 +1417,7 @@
                 <button class="filter-btn active" data-category="all">All Templates</button>
                 <button class="filter-btn" data-category="agency">Agency</button>
                 <button class="filter-btn" data-category="portfolio">Portfolio</button>
-                <button class="filter-btn" data-category="chatbot">ChatBot</button>
+                <button class="filter-btn" data-category="ChatBot">ChatBot</button>
             </div>
 
             <div class="templates-grid original-grid">
@@ -1750,7 +1752,7 @@
                     <ul>
                         <li><a href="#agency" data-category="agency">Agency Templates</a></li>
                         <li><a href="#portfolio" data-category="portfolio">Portfolio Templates</a></li>
-                        <li><a href="#chatbot" data-category="chatbot">ChatBot Templates</a></li>
+                        <li><a href="#ChatBot" data-category="ChatBot">ChatBot Templates</a></li>
                     </ul>
                 </div>
             </div>
