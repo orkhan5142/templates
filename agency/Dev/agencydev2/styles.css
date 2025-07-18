@@ -1734,6 +1734,9 @@ img {
 }
 
 @media (max-width: 576px) {
+    .hero-content{
+        margin-bottom: 5rem;
+    }
     .container {
         padding: 0 1.5rem;
     }
@@ -1761,4 +1764,141 @@ img {
     .footer-links {
         justify-content: center;
     }
+}
+/* Hero Visual - Blockchain Animation */
+
+.hero-visual {
+    flex: 1;
+    position: relative;
+    height: 750px; /* Increased height */
+    display: flex;
+    align-items: flex-start; /* Move content higher */
+    justify-content: center;
+    perspective: 1800px; /* Slightly more perspective */
+    margin-top: -250px; /* Move the animation up */
+    /* Kənarları hamarlayan maska effekti */
+    -webkit-mask-image: linear-gradient(to right, transparent 5%, black 25%, black 75%, transparent 95%);
+    mask-image: linear-gradient(to right, transparent 5%, black 25%, black 75%, transparent 95%);
+}
+
+.blockchain-animation {
+    width: 110%; /* Slightly larger */
+    height: 110%;
+    position: relative;
+    transform-style: preserve-3d;
+    /* Yeni "yellənən" animasiya */
+    animation: swayScene 15s infinite ease-in-out;
+}
+
+/* Yeni "yellənən" animasiyanın keyframe-ləri */
+@keyframes swayScene {
+    0% {
+        transform: rotateY(0deg) rotateX(10deg);
+    }
+    25% {
+        transform: rotateY(15deg) rotateX(12deg); /* Sağa dönmə */
+    }
+    75% {
+        transform: rotateY(-15deg) rotateX(8deg); /* Sola dönmə */
+    }
+    100% {
+        transform: rotateY(0deg) rotateX(10deg);
+    }
+}
+
+/* --- Qalan kodlar dəyişməz qalır --- */
+
+.block-chain {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 70px;
+    transform-style: preserve-3d;
+}
+
+.block {
+    width: 120px;
+    height: 120px;
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(8px);
+    border-radius: 15px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    transition: var(--transition);
+    transform: translateZ(20px);
+}
+
+.block:hover {
+    transform: translateZ(40px) scale(1.05);
+    border-color: var(--primary);
+}
+
+.block:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 70px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--glass-border), var(--primary), var(--glass-border));
+    box-shadow: 0 0 10px var(--primary);
+}
+
+.block-icon {
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+    animation: icon-pulse 3s infinite ease-in-out;
+}
+
+.block-hash {
+    font-size: 0.7rem;
+    font-family: 'Courier New', Courier, monospace;
+    color: var(--gray);
+    background: rgba(0,0,0,0.2);
+    padding: 3px 6px;
+    border-radius: 4px;
+}
+
+@keyframes icon-pulse {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.1); opacity: 1; }
+}
+
+.new-block {
+    animation: newBlockAnimation 4s infinite;
+}
+
+@keyframes newBlockAnimation {
+    0% { opacity: 0.5; transform: scale(0.9) translateZ(10px); }
+    50% { opacity: 1; transform: scale(1) translateZ(20px); }
+    100% { opacity: 0.5; transform: scale(0.9) translateZ(10px); }
+}
+
+.node-network {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        radial-gradient(circle at 1px 1px, rgba(0, 240, 255, 0.5) 1px, transparent 0);
+    background-size: 40px 40px;
+    opacity: 0.1;
+    animation: move-background 20s linear infinite;
+    transform: rotateX(-80deg) translateZ(-150px);
+}
+
+@keyframes move-background {
+    from { background-position: 0 0; }
+    to { background-position: 400px 400px; }
 }
